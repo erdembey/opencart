@@ -110,7 +110,7 @@ class ControllerCatalogDownload extends Controller {
     	$this->getList();
   	}
     
-  	private function getList() {
+  	protected function getList() {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -261,7 +261,7 @@ class ControllerCatalogDownload extends Controller {
 		$this->response->setOutput($this->render());
   	}
   
-  	private function getForm() {
+  	protected function getForm() {
     	$this->data['heading_title'] = $this->language->get('heading_title');
    
     	$this->data['entry_name'] = $this->language->get('entry_name');
@@ -397,7 +397,7 @@ class ControllerCatalogDownload extends Controller {
 		$this->response->setOutput($this->render());	
   	}
 
-  	private function validateForm() { 
+  	protected function validateForm() { 
     	if (!$this->user->hasPermission('modify', 'catalog/download')) {
       		$this->error['warning'] = $this->language->get('error_permission');
     	}
@@ -427,7 +427,7 @@ class ControllerCatalogDownload extends Controller {
 		}
   	}
 
-  	private function validateDelete() {
+  	protected function validateDelete() {
     	if (!$this->user->hasPermission('modify', 'catalog/download')) {
       		$this->error['warning'] = $this->language->get('error_permission');
     	}	
@@ -465,7 +465,37 @@ class ControllerCatalogDownload extends Controller {
 				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 128)) {
 					$json['error'] = $this->language->get('error_filename');
 				}	  	
-						
+				
+				// Allowed File types
+				$disallowed = array(
+				    'txt'  => 'text/plain',
+					'htm'  => 'text/html',
+					'html' => 'text/html',
+					'php'  => 'text/html',
+					'css'  => 'text/css',
+					'js'   => 'application/javascript',
+					'json' => 'application/json',
+					'xml'  => 'application/xml',
+					'swf'  => 'application/x-shockwave-flash',
+					'flv'  => 'video/x-flv'
+				);
+					
+				if (in_array($this->request->files['file']['type'], array_values($disallowed))) {
+					$json['error'] = $this->language->get('error_filetype');
+				}				
+				
+				$disallowed = array();
+				
+				$filetypes = explode(',', '.php');
+				
+				foreach ($filetypes as $filetype) {
+					$allowed[] = trim($filetype);
+				}
+			
+				if (!in_array(substr(strrchr($filename, '.'), 1), $disallowed)) {
+					$json['error'] = $this->language->get('error_filetype');
+				}	
+									
 				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
 				}
@@ -487,6 +517,39 @@ class ControllerCatalogDownload extends Controller {
 			$json['success'] = $this->language->get('text_upload');
 		}	
 	
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function autocomplete() {
+		$json = array();
+		
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/download');
+			
+			$data = array(
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
+			);
+			
+			$results = $this->model_catalog_download->getDownloads($data);
+				
+			foreach ($results as $result) {
+				$json[] = array(
+					'download_id' => $result['download_id'], 
+					'name'        => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}		
+		}
+
+		$sort_order = array();
+	  
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
 		$this->response->setOutput(json_encode($json));
 	}	
 }

@@ -11,6 +11,7 @@
   <div class="warning"><?php echo $error_warning; ?></div>
   <?php } ?>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+    <fieldset>
     <p><b>Follow these steps carefully!</b></p>
     <ol>
       <li>Post any upgrade script errors problems in the forums</li>
@@ -20,9 +21,12 @@
       <li>Goto Admin and Edit the main System Settings. Update all fields and click save, even if nothing changed.</li>
       <li>Load the store front & press Ctrl+F5 twice to force the browser to update the css changes.</li>
     </ol>
-    <div class="right">
-      <input type="submit" value="Continue" class="button" />
-    </div>
+    </fieldset>
+    <div class="buttons">
+	  <div class="right">
+        <input type="submit" value="Continue" class="button" />
+      </div>
+	</div>
   </form>
 </div>
 <?php echo $footer; ?> 
