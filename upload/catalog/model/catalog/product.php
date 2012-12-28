@@ -114,10 +114,10 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_name'])) {
 				$implode = array();
 
-				$words = explode(' ', trim(preg_replace('/\s\s+/', ' ', $data['filter_name'])));
+				$words = explode(' ', strtolower(trim(preg_replace('/\s\s+/', ' ', $data['filter_name']))));
 
 				foreach ($words as $word) {
-					$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
+					$implode[] = "LCASE(pd.name) LIKE '%" . $this->db->escape($word) . "%'";
 				}
 				
 				if ($implode) {
@@ -125,7 +125,7 @@ class ModelCatalogProduct extends Model {
 				}
 
 				if (!empty($data['filter_description'])) {
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+					$sql .= " OR LCASE(pd.description) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 				}
 			}
 			
@@ -134,7 +134,7 @@ class ModelCatalogProduct extends Model {
 			}
 			
 			if (!empty($data['filter_tag'])) {
-				$sql .= "pd.tag LIKE '%" . $this->db->escape($data['filter_tag']) . "%'";
+				$sql .= "LCASE(pd.tag) LIKE '%" . $this->db->escape($data['filter_tag']) . "%'";
 			}
 			
 			if (!empty($data['filter_name'])) {
@@ -515,10 +515,10 @@ class ModelCatalogProduct extends Model {
 			if (!empty($data['filter_name'])) {
 				$implode = array();
 
-				$words = explode(' ', trim(preg_replace('/\s\s+/', ' ', $data['filter_name'])));
+				$words = explode(' ', strtolower(trim(preg_replace('/\s\s+/', ' ', $data['filter_name']))));
 
 				foreach ($words as $word) {
-					$implode[] = "pd.name LIKE '%" . $this->db->escape(utf8_strtolower($word)) . "%'";
+					$implode[] = "LCASE(pd.name) LIKE '%" . $this->db->escape(utf8_strtolower($word)) . "%'";
 				}
 				
 				if ($implode) {
@@ -526,7 +526,7 @@ class ModelCatalogProduct extends Model {
 				}
 
 				if (!empty($data['filter_description'])) {
-					$sql .= " OR pd.description LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
+					$sql .= " OR LCASE(pd.description) LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
 				}
 			}
 			
@@ -535,7 +535,7 @@ class ModelCatalogProduct extends Model {
 			}
 			
 			if (!empty($data['filter_tag'])) {
-				$sql .= "pd.tag LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
+				$sql .= "LCASE(pd.tag) LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
 			}
 		
 			if (!empty($data['filter_name'])) {
