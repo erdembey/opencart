@@ -26,11 +26,13 @@ class ControllerModuleCarousel extends Controller {
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
 
+		$this->data['img_resize_type_d'] = $this->language->get('img_resize_type_d');
+		$this->data['img_resize_type_w'] = $this->language->get('img_resize_type_w');
+		$this->data['img_resize_type_h'] = $this->language->get('img_resize_type_h');
+
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_limit'] = $this->language->get('entry_limit');
-		$this->data['entry_auto'] = $this->language->get('entry_auto');
 		$this->data['entry_scroll'] = $this->language->get('entry_scroll');
-		$this->data['entry_wrap'] = $this->language->get('entry_wrap');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');

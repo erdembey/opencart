@@ -48,13 +48,14 @@ $_['button_submit']           = 'Submit';
 $_['button_invoice']          = 'Print Invoice';
 $_['button_add_address']      = 'Add Address';
 $_['button_add_attribute']    = 'Add Attribute';
-$_['button_add_banner']       = 'Add Banner';
-$_['button_add_product']      = 'Add Product';
-$_['button_add_voucher']      = 'Add Voucher';
-$_['button_add_filter']       = 'Add Filter';
-$_['button_add_option']       = 'Add Option';
-$_['button_add_option_value'] = 'Add Option Value';
-$_['button_add_discount']     = 'Add Discount';
+$_['button_add_banner']             = 'Add Banner';
+$_['button_add_custom_field_value'] = 'Add Custom Field';
+$_['button_add_product']            = 'Add Product';
+$_['button_add_voucher']            = 'Add Voucher';
+$_['button_add_filter']             = 'Add Filter';
+$_['button_add_option']             = 'Add Option';
+$_['button_add_option_value']       = 'Add Option Value';
+$_['button_add_discount']           = 'Add Discount';
 $_['button_add_special']      = 'Add Special';
 $_['button_add_image']        = 'Add Image';
 $_['button_add_geo_zone']     = 'Add Geo Zone';
@@ -102,6 +103,11 @@ $_['tab_total']               = 'Totals';
 $_['tab_transaction']         = 'Transactions';
 $_['tab_voucher']             = 'Vouchers';
 $_['tab_voucher_history']     = 'Voucher History';
+
+// Image Resize Type
+$_['img_resize_type_d'] 	  = 'Resize according to default'; 
+$_['img_resize_type_w'] 	  = 'Resize according to width'; 		 
+$_['img_resize_type_h'] 	  = 'Resize according to height'; 		 
 
 // Error
 $_['error_upload_1']          = 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';
