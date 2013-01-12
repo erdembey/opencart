@@ -104,7 +104,7 @@ class ModelCatalogProduct extends Model {
 					$implode[] = (int)$filter_id;
 				}
 				
-				$sql .= " AND pf.filter_id IN ('" . implode(',', $implode) . "')";				
+				$sql .= " AND pf.filter_id IN (" . implode(',', $implode) . ")";				
 			}
 		}	
 
@@ -505,10 +505,10 @@ class ModelCatalogProduct extends Model {
 					$implode[] = (int)$filter_id;
 				}
 				
-				$sql .= " AND pf.filter_id IN ('" . implode(',', $implode) . "')";				
+				$sql .= " AND pf.filter_id IN (" . implode(',', $implode) . ")";				
 			}
 		}
-				
+		
 		if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
 			$sql .= " AND (";
 			
