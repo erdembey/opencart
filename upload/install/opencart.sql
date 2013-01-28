@@ -866,8 +866,6 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (237, 'Democratic Republic of Congo', 'CD', 'COD', '', 0, 1),
 (238, 'Zambia', 'ZM', 'ZMB', '', 0, 1),
 (239, 'Zimbabwe', 'ZW', 'ZWE', '', 0, 1),
-(240, 'Jersey', 'JE', 'JEY', '', 1, 1),
-(241, 'Guernsey', 'GG', 'GGY', '', 1, 1),
 (242, 'Montenegro', 'ME', 'MNE', '', 0, 1),
 (243, 'Serbia', 'RS', 'SRB', '', 0, 1),
 (244, 'Aaland Islands', 'AX', 'ALA', '', 0, 1),
