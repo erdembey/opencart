@@ -43,6 +43,7 @@ $_['entry_currency_auto']       = 'Para Birimini Otomatik Güncelle:<br /><span 
 $_['entry_length_class']        = 'Uzunluk Birimi:';
 $_['entry_weight_class']        = 'Ağırlık Birimi:';
 $_['entry_catalog_limit'] 	    = 'Sayfa Başına Ürün(Katalog):<br /><span class="help">Mağazanız sayfalarında sayfa başına kaç ürün gösterileceğini seçin (Ürünler, Kategoriler, sayfaları gibi)</span>';
+$_['entry_list_description_limit'] = 'List Description Limit (Catalog):<br /><span class="help">In the list view, short description character limit (categories, special etc)</span>';
 $_['entry_admin_limit']   	    = 'Sayfa Başına Ürün(Yönetim):<br /><span class="help">Yönetim sayfalarında sayfa başına kaç ürün gösterileceğini seçin (Siparişler, Müşteriler, sayfaları gibi)</span>';
 $_['entry_product_count']		= 'Kategori Ürün Sayısı:<br /><span class="help">Üst kategori menüsünde alt kategorilerdeki ürün sayısını göster. <b>Uyarı, ürün sayısı bir çok mağazada aşırı performans düşüklüğüne neden olabilir!</b></span>';
 $_['entry_review']       	    = 'Yorumlara izin ver:<br /><span class="help">Yeni yorumları ve görüntülenmesini aktif/pasif yapın.</span>';

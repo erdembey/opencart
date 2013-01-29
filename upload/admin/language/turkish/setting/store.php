@@ -40,6 +40,7 @@ $_['entry_zone']					= 'Şehir / Eyalet:';
 $_['entry_language']				= 'Dil:';
 $_['entry_currency']				= 'Para Birimi:';
 $_['entry_catalog_limit']			= 'Sayfa Başına Ürün(Katalog):<br /><span class="help">Mağazanız sayfalarında sayfa başına kaç ürün gösterileceğini seçin (Ürünler, Kategoriler, sayfaları gibi)</span>';
+$_['entry_list_description_limit'] = 'List Description Limit (Catalog:<br /><span class="help">In the list view, short description character limit (categories, special etc)</span>';
 $_['entry_tax']						= 'Vergi Oranlarını Göster:';
 $_['entry_tax_default']				= 'Varsayılan Mağaza Vergi Adresi:<br /><span class="help">Mağaza adresi kimse oturum açmadığında vergi hesaplamak için kullanılır. Kargo ya da ödeme adresi için müşterilerinizde kullanılacak varsayılan mağaza adresi seçebilirsiniz.</span>';
 $_['entry_tax_customer']			= 'Varsayılan Müşteri Vergi Adresi:<br /><span class="help">Müşteri oturum açtığında hesaplamalar için kullanılacak vergi adresi. Müşterileriniz için varsayılan kargo ya da fatura adresi seçebilirsiniz</span>';
