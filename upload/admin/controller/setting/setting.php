@@ -69,6 +69,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
 		$this->data['entry_review'] = $this->language->get('entry_review');
+		$this->data['entry_guest_review'] = $this->language->get('entry_guest_review');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
@@ -122,6 +123,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_smtp_timeout'] = $this->language->get('entry_smtp_timeout');
 		$this->data['entry_alert_mail'] = $this->language->get('entry_alert_mail');
 		$this->data['entry_account_mail'] = $this->language->get('entry_account_mail');
+		$this->data['entry_review_mail'] = $this->language->get('entry_review_mail');
 		$this->data['entry_alert_emails'] = $this->language->get('entry_alert_emails');
 		$this->data['entry_fraud_detection'] = $this->language->get('entry_fraud_detection');
 		$this->data['entry_fraud_key'] = $this->language->get('entry_fraud_key');
@@ -335,7 +337,7 @@ class ControllerSettingSetting extends Controller {
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('heading_title'),
 			'href'      => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
+      		'separator' => $this->language->get('breadcrumb_seperator')
    		);
 		
 		if (isset($this->session->data['success'])) {
@@ -520,6 +522,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_review_status'] = $this->request->post['config_review_status'];
 		} else {
 			$this->data['config_review_status'] = $this->config->get('config_review_status');
+		}
+				
+		if (isset($this->request->post['config_guest_review'])) {
+			$this->data['config_guest_review'] = $this->request->post['config_guest_review'];
+		} else {
+			$this->data['config_guest_review'] = $this->config->get('config_guest_review');
 		}
 		
 		if (isset($this->request->post['config_download'])) {
@@ -944,6 +952,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_account_mail'] = $this->request->post['config_account_mail'];
 		} else {
 			$this->data['config_account_mail'] = $this->config->get('config_account_mail');
+		}
+
+		if (isset($this->request->post['config_review_mail'])) {
+			$this->data['config_review_mail'] = $this->request->post['config_review_mail'];
+		} else {
+			$this->data['config_review_mail'] = $this->config->get('config_review_mail');
 		}
 		
 		if (isset($this->request->post['config_alert_emails'])) {

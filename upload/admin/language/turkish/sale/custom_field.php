@@ -18,7 +18,7 @@ $_['text_date']             = 'Tarih';
 $_['text_datetime']         = 'Tarih &amp; Zaman';
 $_['text_time']             = 'Zaman';
 $_['text_customer']         = 'Müşteri Bilgileri';
-$_['text_address']          = 'Adres';
+$_['text_address']          = 'Varsayılan Adres';
 $_['text_payment_address']  = 'Fatura Adresi';
 $_['text_shipping_address']	= 'Kargo Adresi';
 $_['text_begining']         = 'Başında';
@@ -52,6 +52,7 @@ $_['entry_customer_group'] = 'Müşteri Grubu:';
 $_['entry_required']       = 'Gerekli:';
 $_['entry_location']       = 'Konum:';
 $_['entry_position']       = 'Pozisyon:';
+$_['entry_status']		   = 'Durum:';
 $_['entry_sort_order']     = 'Sıralama:';
 
 // Error

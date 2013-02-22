@@ -15,12 +15,12 @@ $_['text_germany']     = 'Germany';
 $_['text_netherlands'] = 'The Netherlands';
 
 // Entry
-$_['entry_total']      = 'Sipariþ Toplamý:';
-$_['entry_fee']        = 'Ücreti:';
-$_['entry_tax_class']  = 'Vergi Oraný:';
-$_['entry_status']     = 'Durumu:';
-$_['entry_sort_order'] = 'Sýralama:';
+$_['entry_total']      = 'Order Total:';
+$_['entry_fee']        = 'Invoice Fee:';
+$_['entry_tax_class']  = 'Tax Class:';
+$_['entry_status']     = 'Status:';
+$_['entry_sort_order'] = 'Sort Order:';
 
 // Error
-$_['error_permission'] = 'Uyarý: Klarna ücreti toplamýný düzenleme iznine sahip deðilsiniz!';
+$_['error_permission'] = 'Warning: You do not have permission to modify Klarna fee total!';
 ?>
