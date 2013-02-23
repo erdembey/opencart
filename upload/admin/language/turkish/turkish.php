@@ -117,4 +117,8 @@ $_['error_upload_6']          		= 'Uyarı: Geçici klasör eksik!';
 $_['error_upload_7']          		= 'Uyarı: Dosyayı diske yazma basarısız oldu!';
 $_['error_upload_8']          		= 'Uyarı: Bu uzantı türdeki dosyaları yükleyemezsiniz!';
 $_['error_upload_999']        		= 'Uyarı: Kod hatası mümkün olabilir!';
+
+// Breadcrumb Separator
+$_['breadcrumb_separator']			= '<span class="breadcrumb-seperator">&rsaquo;&rsaquo;</span>';
+
 ?>
