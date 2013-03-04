@@ -1,34 +1,34 @@
 <?php
 class Modification {
-	private $mod = array();
-	private $content = array();
+	private $data = array();
 	
-	public function addMod($modifcation) {
-		$this->mod[] = $modifcation;
+	public function addMod($xml) {
+		$this->data[] = $xml;
 	}
 		
 	public function getFile($file) {
 		if (file_exists($file)) {
-			return DIR_MODIFICATION . str_replace('/', '_', $file);
+			return DIR_MODIFICATION . str_replace(array('/', '..'), array('_', ''), $file);
 		} else {
 			return $file;
 		}		
 	}
-		
+			
 	public function load($filename) {
-		$file = DIR_MODIFICATION . '/' . $filename . '.php';
-
-		if (file_exists($file)) {
-			$xml = file_get_contents($file);
+		if (file_exists($filename)) {
+			$xml = file_get_contents($filename);
 
 			$this->addMod($xml);
 		} else {
 			trigger_error('Error: Could not load modification ' . $filename . '!');
+			exit();
 		}
 	}
 
 	public function write() {
-		foreach ($this->mod as $xml) {
+		$modification = array();
+		
+		foreach ($this->data as $xml) {
 			$dom = new DOMDocument('1.0', 'UTF-8');
 			$dom->loadXml($xml);
 			
@@ -40,10 +40,8 @@ class Modification {
 				
 				if ($files) {	
 					foreach ($files as $file) {
-						if (!isset($this->content[$file])) {
-							$content = file_get_contents($file);
-						} else {
-							$content = $this->content[$file];
+						if (!isset($modification[$file])) {
+							$modification[$file] = file_get_contents($file);
 						}
 						
 						foreach ($operations as $operation) {
@@ -73,39 +71,37 @@ class Modification {
 							$pos = -1;
 							$result = array();
 			
-							while (($pos = strpos($content, $search, $pos + 1)) !== false) {
+							while (($pos = strpos($modification[$file], $search, $pos + 1)) !== false) {
 								$result[$i++] = $pos; 
 							}
 							
 							// Only replace the occurance of the string that is equal to the index					
 							if (isset($result[$index - 1])) {
-								$content = substr_replace($content, $replace, $result[$index - 1], strlen($search));
+								$modification[$file] = substr_replace($modification[$file], $replace, $result[$index - 1], strlen($search));
 							}
 						}
-						
-						$this->content[$file] = $content;
 					}
 				}
 			}
 		}
 		
-		// Write all modifcation files
-		foreach ($this->content as $key => $value) {
+		// Write all modification files
+		foreach ($modification as $key => $value) {
+			/*
 			$path = '';
 			
-			$directories = explode('/', dirname(str_replace('../', '', $new_image)));
+			$directories = explode('/', dirname(str_replace('../', '', $key)));
 			
 			foreach ($directories as $directory) {
-				$path = $path . '/' . $directory;
+				$path = $key . '/' . $directory;
 				
-				if (!file_exists(DIR_IMAGE . $path)) {
-					@mkdir(DIR_IMAGE . $path, 0777);
+				if (!file_exists(DIR_MODIFICATION . $path)) {
+					@mkdir(DIR_MODIFICATION . $path, 0777);
 				}		
 			}
-			
-			
+			*/
 						
-			$file = DIR_MODIFICATION . $key . '.php';
+			$file = DIR_MODIFICATION . str_replace(array('/', '..'), array('_', ''), $key);
 			
 			$handle = fopen($file, 'w');
 	
@@ -116,7 +112,7 @@ class Modification {
 	}
 	
 	public function clear() {
-		$files = glob(DIR_MODIFICATION . '.*');
+		$files = glob(DIR_MODIFICATION . '{*.php,*.tpl}', GLOB_BRACE);
 
 		if ($files) {
 			foreach ($files as $file) {
@@ -124,7 +120,7 @@ class Modification {
 					unlink($file);
 				}
 			}
-		}				
+		}
 	}
 }
 ?>

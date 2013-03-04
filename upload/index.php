@@ -28,6 +28,13 @@ require_once(DIR_SYSTEM . 'library/cart.php');
 // Registry
 $registry = new Registry();
 
+// Modification
+$modifcation = new Modification();
+$modifcation->load('vqmod_opencart.xml');
+$modifcation->write();
+
+require_once($modifcation->getFile(DIR_SYSTEM . 'engine/loader.php'));
+
 // Loader
 $loader = new Loader($registry);
 $registry->set('load', $loader);
