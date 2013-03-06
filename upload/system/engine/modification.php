@@ -1,17 +1,19 @@
 <?php
 class Modification {
 	private $data = array();
-	
-	public function addMod($xml) {
-		$this->data[] = $xml;
+		
+	public function getFile($filename) {
+		$file = DIR_MODIFICATION . str_replace('/', '_', $filename);
+		
+		if (file_exists($file)) {
+			return $file;
+		} else {
+			return $filename;
+		}
 	}
 		
-	public function getFile($file) {
-		if (file_exists($file)) {
-			return DIR_MODIFICATION . str_replace(array('/', '..'), array('_', ''), $file);
-		} else {
-			return $file;
-		}		
+	public function addModification($xml) {
+		$this->data[] = $xml;
 	}
 			
 	public function load($filename) {
@@ -101,7 +103,7 @@ class Modification {
 			}
 			*/
 						
-			$file = DIR_MODIFICATION . str_replace(array('/', '..'), array('_', ''), $key);
+			$file = DIR_MODIFICATION . str_replace('/', '_', $key);
 			
 			$handle = fopen($file, 'w');
 	
