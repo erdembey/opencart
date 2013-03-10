@@ -73,10 +73,6 @@ if (!isset($_SERVER['HTTP_HOST'])) {
 	$_SERVER['HTTP_HOST'] = getenv('HTTP_HOST');
 }
 
-// Modification
-require(DIR_SYSTEM . 'engine/modification.php');
-$modification = new Modification();
-
 // Engine
 require_once($modification->getFile(DIR_SYSTEM . 'engine/action.php')); 
 require_once($modification->getFile(DIR_SYSTEM . 'engine/controller.php'));

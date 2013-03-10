@@ -1,7 +1,12 @@
 <?php
 class Modification {
+	private $path;
 	private $data = array();
-		
+	
+	public function __construct() {
+		$this->path = realpath(str_replace('\'', '/', dirname(__FILE__)) . '/../') . '/';
+	}
+	
 	public function getFile($filename) {
 		$file = DIR_MODIFICATION . str_replace('/', '_', $filename);
 		
@@ -37,7 +42,7 @@ class Modification {
 			$files = $dom->getElementsByTagName('modification')->item(0)->getElementsByTagName('file');		
 			
 			foreach ($files as $file) {
-				$files = glob($file->getAttribute('name'));
+				$files = glob($this->path . $file->getAttribute('name'));
 				$operations = $file->getElementsByTagName('operation');
 				
 				if ($files) {	
@@ -103,7 +108,9 @@ class Modification {
 			}
 			*/
 						
-			$file = DIR_MODIFICATION . str_replace('/', '_', $key);
+			$file = DIR_MODIFICATION . str_replace('/', '_', substr($key, strlen($this->path)));
+			
+			echo substr($key, strlen($this->path)) . '<br />';
 			
 			$handle = fopen($file, 'w');
 	
