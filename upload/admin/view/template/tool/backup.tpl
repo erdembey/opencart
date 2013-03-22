@@ -6,15 +6,15 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="warning"><?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><?php echo $error_warning; ?></div>
   <?php } ?>
   <?php if ($success) { ?>
-  <div class="success"><?php echo $success; ?></div>
+  <div class="alert alert-success"><?php echo $success; ?></div>
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="$('#restore').submit();" class="button"><?php echo $button_restore; ?></a><a onclick="$('#backup').submit();" class="button"><?php echo $button_backup; ?></a></div>
+      <h1><i class=""></i> <?php echo $heading_title; ?></h1>
+      <div class="buttons"><a onclick="$('#restore').submit();" class="btn"><i class="icon-upload"></i> <?php echo $button_restore; ?></a><a onclick="$('#backup').submit();" class="btn"><i class="icon-download"></i> <?php echo $button_backup; ?></a></div>
     </div>
     <div class="content">
       <form action="<?php echo $restore; ?>" method="post" enctype="multipart/form-data" id="restore">

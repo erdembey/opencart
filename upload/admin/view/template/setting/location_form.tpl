@@ -6,12 +6,12 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="warning"><?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><?php echo $error_warning; ?></div>
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/country.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
+      <h1><i class="icon-edit"></i> <?php echo $heading_title; ?></h1>
+      <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -73,7 +73,7 @@
           <tr>
             <td><span class="required">*</span> <?php echo $entry_geocode; ?></td>
             <td><input id="geocode" type="text" name="geocode" value="<?php echo $geocode; ?>" />
-              <input type="button" onclick="getGeoCode()" value="<?php echo $button_geocode; ?>" class="button" />
+              <input type="button" onclick="getGeoCode()" value="<?php echo $button_geocode; ?>" class="btn" />
               <?php if ($error_geocode) { ?>
               <span class="error"><?php echo $error_geocode; ?></span>
               <?php } ?></td>

@@ -492,10 +492,11 @@ class ControllerCatalogProduct extends Controller {
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
-		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 			
 		$this->data['pagination'] = $pagination->render();
+		
+		$this->data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $this->config->get('config_admin_limit')) + 1 : 0, ((($page - 1) * $this->config->get('config_admin_limit')) > ($product_total - $this->config->get('config_admin_limit'))) ? $product_total : ((($page - 1) * $this->config->get('config_admin_limit')) + $this->config->get('config_admin_limit')), $product_total, ceil($product_total / $this->config->get('config_admin_limit')));
 	
 		$this->data['filter_name'] = $filter_name;
 		$this->data['filter_model'] = $filter_model;
@@ -585,6 +586,23 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_reward'] = $this->language->get('entry_reward');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
+		
+		$this->data['help_keyword'] = $this->language->get('help_keyword');
+		$this->data['help_sku'] = $this->language->get('help_sku');
+		$this->data['help_upc'] = $this->language->get('entry_upc');
+		$this->data['help_ean'] = $this->language->get('entry_ean');
+		$this->data['help_jan'] = $this->language->get('entry_jan');
+		$this->data['help_isbn'] = $this->language->get('entry_isbn');
+		$this->data['help_mpn'] = $this->language->get('entry_mpn');
+		$this->data['help_minimum'] = $this->language->get('entry_minimum');
+		$this->data['help_manufacturer'] = $this->language->get('entry_manufacturer');
+		$this->data['help_stock_status'] = $this->language->get('entry_stock_status');
+		$this->data['help_points'] = $this->language->get('help_points');
+		$this->data['help_category'] = $this->language->get('help_category');
+		$this->data['help_filter'] = $this->language->get('help_filter');
+		$this->data['help_download'] = $this->language->get('help_download');
+		$this->data['help_related'] = $this->language->get('help_related');
+		$this->data['help_tag'] = $this->language->get('help_tag');
 				
     	$this->data['button_save'] = $this->language->get('button_save');
     	$this->data['button_cancel'] = $this->language->get('button_cancel');
