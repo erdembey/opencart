@@ -73,3 +73,17 @@
 	padding: 5px;
 	margin-bottom: 15px;
 }
+
+.latest{
+	clear:both;
+}
+
+.statistic{
+	display: inline-block;
+	float: right;
+}
+
+.overview{
+	display: inline-block;
+	float: left;
+}
