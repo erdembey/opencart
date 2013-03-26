@@ -87,3 +87,31 @@
 	display: inline-block;
 	float: left;
 }
+
+.breadcrumb li a:before {
+    content: "\f105"; 
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #000;
+    font-size: 16px;
+	padding-right: 5px;
+	text-decoration:none;
+ }
+
+ .breadcrumb li a:hover {
+	text-decoration:none;
+ }
+
+.breadcrumb li:first-child a:before {
+    content: "\f015"; 
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #000;
+    font-size: 16px;
+	padding-right: 5px;	
+	text-decoration:none;
+ }
