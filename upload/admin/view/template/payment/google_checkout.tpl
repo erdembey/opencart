@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_merchant_id; ?></label>
           <div class="controls">
-            <input type="text" name="google_checkout_merchant_id" value="<?php echo $google_checkout_merchant_id; ?>" />
+            <input type="text" name="google_checkout_merchant_id" value="<?php echo $google_checkout_merchant_id; ?>" placeholder="<?php echo $entry_merchant_id; ?>" />
             <?php if ($error_merchant_id) { ?>
             <span class="error"><?php echo $error_merchant_id; ?></span>
             <?php } ?>
@@ -27,7 +27,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_merchant_key; ?></label>
           <div class="controls">
-            <input type="text" name="google_checkout_merchant_key" value="<?php echo $google_checkout_merchant_key; ?>" />
+            <input type="text" name="google_checkout_merchant_key" value="<?php echo $google_checkout_merchant_key; ?>" placeholder="<?php echo $entry_merchant_key; ?>" />
             <?php if ($error_merchant_key) { ?>
             <span class="error"><?php echo $error_merchant_key; ?></span>
             <?php } ?>
@@ -36,30 +36,37 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_callback; ?></label>
           <div class="controls">
-            <textarea cols="40" rows="5"><?php echo $callback; ?></textarea>
+            <textarea cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_test; ?></label>
           <div class="controls">
-            <?php if ($google_checkout_test) { ?>
-            <input type="radio" name="google_checkout_test" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="google_checkout_test" value="0" />
-            <?php echo $text_no; ?>
-            <?php } else { ?>
-            <input type="radio" name="google_checkout_test" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="google_checkout_test" value="0" checked="checked" />
-            <?php echo $text_no; ?>
-            <?php } ?>
+            <label class="radio inline">
+              <?php if ($google_checkout_test) { ?>
+              <input type="radio" name="google_checkout_test" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <?php } else { ?>
+              <input type="radio" name="google_checkout_test" value="1" />
+              <?php echo $text_yes; ?>
+              <?php } ?>
+            </label>
+            <label class="radio inline">
+              <?php if (!$google_checkout_test) { ?>
+              <input type="radio" name="google_checkout_test" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+              <?php } else { ?>
+              <input type="radio" name="google_checkout_test" value="0" />
+              <?php echo $text_no; ?>
+              <?php } ?>
+            </label>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="google_checkout_total" value="<?php echo $google_checkout_total; ?>" />
-          </div>
+            <input type="text" name="google_checkout_total" value="<?php echo $google_checkout_total; ?>" placeholder="<?php echo $entry_total; ?>" />
+            <span class="help-block"><?php echo $help_total; ?></span></div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_order_status; ?></label>
@@ -107,7 +114,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="google_checkout_sort_order" value="<?php echo $google_checkout_sort_order; ?>" size="1" />
+            <input type="text" name="google_checkout_sort_order" value="<?php echo $google_checkout_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

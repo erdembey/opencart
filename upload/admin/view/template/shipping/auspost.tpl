@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_postcode; ?></label>
           <div class="controls">
-            <input type="text" name="auspost_postcode" size="4" maxlength="4" value="<?php echo $auspost_postcode; ?>" />
+            <input type="text" name="auspost_postcode" value="<?php echo $auspost_postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" maxlength="4" class="input-mini" />
             <?php if ($error_postcode) { ?>
             <span class="error"><?php echo $error_postcode; ?></span>
             <?php } ?>
@@ -63,7 +63,7 @@
               <option value="1"><?php echo $text_enabled; ?></option>
               <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
-            </select>
+            </select> <span class="help-block"><?php echo $help_display_time; ?></span>
           </div>
         </div>
         <div class="control-group">
@@ -77,7 +77,7 @@
               <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
               <?php } ?>
               <?php } ?>
-            </select>
+            </select> <span class="help-block"><?php echo $help_weight_class; ?></span>
           </div>
         </div>
         <div class="control-group">
@@ -127,7 +127,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="auspost_sort_order" value="<?php echo $auspost_sort_order; ?>" size="1" />
+            <input type="text" name="auspost_sort_order" value="<?php echo $auspost_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

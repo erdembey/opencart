@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_email; ?></label>
           <div class="controls">
-            <input type="text" name="moneybookers_email" value="<?php echo $moneybookers_email; ?>" />
+            <input type="text" name="moneybookers_email" value="<?php echo $moneybookers_email; ?>" placeholder="<?php echo $entry_email; ?>" />
             <?php if ($error_email) { ?>
             <span class="error"><?php echo $error_email; ?></span>
             <?php } ?>
@@ -27,14 +27,14 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_secret; ?></label>
           <div class="controls">
-            <input type="text" name="moneybookers_secret" value="<?php echo $moneybookers_secret; ?>" />
+            <input type="text" name="moneybookers_secret" value="<?php echo $moneybookers_secret; ?>" placeholder="<?php echo $entry_secret; ?>" />
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="moneybookers_total" value="<?php echo $moneybookers_total; ?>" />
-          </div>
+            <input type="text" name="moneybookers_total" value="<?php echo $moneybookers_total; ?>" placeholder="<?php echo $entry_total; ?>" />
+            <span class="help-block"><?php echo $help_total; ?></span></div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_order_status; ?></label>
@@ -138,7 +138,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="moneybookers_sort_order" value="<?php echo $moneybookers_sort_order; ?>" size="3" />
+            <input type="text" name="moneybookers_sort_order" value="<?php echo $moneybookers_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-small" />
           </div>
         </div>
       </form>

@@ -14,11 +14,12 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
-          <label class="control-label" for="input-name"></label>
-          <div class="controls"><span class="required">*</span> <?php echo $entry_code; ?>
-            <textarea name="google_talk_code" cols="40" rows="5"><?php echo $google_talk_code; ?></textarea>
+          <label class="control-label" for="input-code"><span class="required">*</span> <?php echo $entry_code; ?></label>
+          <div class="controls">
+            <textarea name="google_talk_code" cols="40" rows="5" id="input-code"><?php echo $google_talk_code; ?></textarea>
+            <span class="help-block"><?php echo $help_code; ?></span>
             <?php if ($error_code) { ?>
             <span class="error"><?php echo $error_code; ?></span>
             <?php } ?>
@@ -78,7 +79,7 @@
                   <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
                   <?php } ?>
                 </select></td>
-              <td class="right"><input type="text" name="google_talk_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" /></td>
+              <td class="right"><input type="text" name="google_talk_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" /></td>
               <td class="left"><a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="btn"><i class="icon-minus-sign"></i> <?php echo $button_remove; ?></a></td>
             </tr>
             <?php $module_row++; ?>
@@ -115,7 +116,7 @@ function addModule() {
     html += '    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
     html += '    <option value="0"><?php echo $text_disabled; ?></option>';
     html += '  </select></td>';
-	html += '  <td class="right"><input type="text" name="google_talk_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
+	html += '  <td class="right"><input type="text" name="google_talk_module[' + module_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" /></td>';
 	html += '  <td class="left"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="btn"><i class="icon-minus-sign"></i> <?php echo $button_remove; ?></a></td>';
 	html += '</tr>';
 	

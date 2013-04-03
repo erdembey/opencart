@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_auth_id; ?></label>
           <div class="controls">
-            <input type="text" name="perpetual_payments_auth_id" value="<?php echo $perpetual_payments_auth_id; ?>" />
+            <input type="text" name="perpetual_payments_auth_id" value="<?php echo $perpetual_payments_auth_id; ?>" placeholder="<?php echo $entry_auth_id; ?>" />
             <?php if ($error_auth_id) { ?>
             <span class="error"><?php echo $error_auth_id; ?></span>
             <?php } ?>
@@ -27,7 +27,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_auth_pass; ?></label>
           <div class="controls">
-            <input type="text" name="perpetual_payments_auth_pass" value="<?php echo $perpetual_payments_auth_pass; ?>" />
+            <input type="text" name="perpetual_payments_auth_pass" value="<?php echo $perpetual_payments_auth_pass; ?>" placeholder="<?php echo $entry_auth_pass; ?>" />
             <?php if ($error_auth_pass) { ?>
             <span class="error"><?php echo $error_auth_pass; ?></span>
             <?php } ?>
@@ -36,23 +36,30 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_test; ?></label>
           <div class="controls">
-            <?php if ($perpetual_payments_test) { ?>
-            <input type="radio" name="perpetual_payments_test" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="perpetual_payments_test" value="0" />
-            <?php echo $text_no; ?>
-            <?php } else { ?>
-            <input type="radio" name="perpetual_payments_test" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="perpetual_payments_test" value="0" checked="checked" />
-            <?php echo $text_no; ?>
-            <?php } ?>
-          </div>
+            <label class="radio inline">
+              <?php if ($perpetual_payments_test) { ?>
+              <input type="radio" name="perpetual_payments_test" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <?php } else { ?>
+              <input type="radio" name="perpetual_payments_test" value="1" />
+              <?php echo $text_yes; ?>
+              <?php } ?>
+            </label>
+            <label class="radio inline">
+              <?php if (!$perpetual_payments_test) { ?>
+              <input type="radio" name="perpetual_payments_test" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+              <?php } else { ?>
+              <input type="radio" name="perpetual_payments_test" value="0" />
+              <?php echo $text_no; ?>
+              <?php } ?>
+            </label>
+            <span class="help-block"><?php echo $help_test; ?></span> </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="perpetual_payments_total" value="<?php echo $perpetual_payments_total; ?>" />
+            <input type="text" name="perpetual_payments_total" value="<?php echo $perpetual_payments_total; ?>" placeholder="<?php echo $entry_total; ?>" />
           </div>
         </div>
         <div class="control-group">
@@ -101,7 +108,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="perpetual_payments_sort_order" value="<?php echo $perpetual_payments_sort_order; ?>" size="1" />
+            <input type="text" name="perpetual_payments_sort_order" value="<?php echo $perpetual_payments_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

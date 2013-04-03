@@ -14,11 +14,11 @@
     </div>
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_login; ?></label>
           <div class="controls">
-            <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" />
+            <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" placeholder="<?php echo $entry_login; ?>" />
             <?php if ($error_login) { ?>
             <span class="error"><?php echo $error_login; ?></span>
             <?php } ?>
@@ -27,7 +27,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_key; ?></label>
           <div class="controls">
-            <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" />
+            <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" placeholder="<?php echo $entry_key; ?>" />
             <?php if ($error_key) { ?>
             <span class="error"><?php echo $error_key; ?></span>
             <?php } ?>
@@ -36,7 +36,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_hash; ?></label>
           <div class="controls">
-            <input type="text" name="authorizenet_aim_hash" value="<?php echo $authorizenet_aim_hash; ?>" />
+            <input type="text" name="authorizenet_aim_hash" value="<?php echo $authorizenet_aim_hash; ?>" placeholder="<?php echo $entry_hash; ?>" />
           </div>
         </div>
         <div class="control-group">
@@ -93,7 +93,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="authorizenet_aim_total" value="<?php echo $authorizenet_aim_total; ?>" />
+            <input type="text" name="authorizenet_aim_total" value="<?php echo $authorizenet_aim_total; ?>" placeholder="<?php echo $entry_total; ?>" /> <span class="help-block"><?php echo $help_total; ?></span>
           </div>
         </div>
         <div class="control-group">
@@ -142,7 +142,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="authorizenet_aim_sort_order" value="<?php echo $authorizenet_aim_sort_order; ?>" size="1" />
+            <input type="text" name="authorizenet_aim_sort_order" value="<?php echo $authorizenet_aim_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

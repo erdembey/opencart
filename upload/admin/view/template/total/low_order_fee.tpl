@@ -14,17 +14,17 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="low_order_fee_total" value="<?php echo $low_order_fee_total; ?>" />
-          </div>
+            <input type="text" name="low_order_fee_total" value="<?php echo $low_order_fee_total; ?>" placeholder="<?php echo $entry_total; ?>" />
+            <span class="help-block"><?php echo $help_total; ?></span> </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_fee; ?></label>
           <div class="controls">
-            <input type="text" name="low_order_fee_fee" value="<?php echo $low_order_fee_fee; ?>" />
+            <input type="text" name="low_order_fee_fee" value="<?php echo $low_order_fee_fee; ?>" placeholder="<?php echo $entry_fee; ?>" />
           </div>
         </div>
         <div class="control-group">
@@ -59,7 +59,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="low_order_fee_sort_order" value="<?php echo $low_order_fee_sort_order; ?>" size="1" />
+            <input type="text" name="low_order_fee_sort_order" value="<?php echo $low_order_fee_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

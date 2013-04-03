@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_cost; ?></label>
           <div class="controls">
-            <input type="text" name="flat_cost" value="<?php echo $flat_cost; ?>" />
+            <input type="text" name="flat_cost" value="<?php echo $flat_cost; ?>" placeholder="<?php echo $entry_cost; ?>" class="input-small" />
           </div>
         </div>
         <div class="control-group">
@@ -68,7 +68,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="flat_sort_order" value="<?php echo $flat_sort_order; ?>" size="1" />
+            <input type="text" name="flat_sort_order" value="<?php echo $flat_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

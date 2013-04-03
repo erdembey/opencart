@@ -14,11 +14,11 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_email; ?></label>
           <div class="controls">
-            <input type="text" name="pp_standard_email" value="<?php echo $pp_standard_email; ?>" />
+            <input type="text" name="pp_standard_email" value="<?php echo $pp_standard_email; ?>" placeholder="<?php echo $entry_email; ?>" />
             <?php if ($error_email) { ?>
             <span class="error"><?php echo $error_email; ?></span>
             <?php } ?>
@@ -27,17 +27,24 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_test; ?></label>
           <div class="controls">
-            <?php if ($pp_standard_test) { ?>
-            <input type="radio" name="pp_standard_test" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="pp_standard_test" value="0" />
-            <?php echo $text_no; ?>
-            <?php } else { ?>
-            <input type="radio" name="pp_standard_test" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="pp_standard_test" value="0" checked="checked" />
-            <?php echo $text_no; ?>
-            <?php } ?>
+            <label class="radio inline">
+              <?php if ($pp_standard_test) { ?>
+              <input type="radio" name="pp_standard_test" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <?php } else { ?>
+              <input type="radio" name="pp_standard_test" value="1" />
+              <?php echo $text_yes; ?>
+              <?php } ?>
+            </label>
+            <label class="radio inline">
+              <?php if (!$pp_standard_test) { ?>
+              <input type="radio" name="pp_standard_test" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+              <?php } else { ?>
+              <input type="radio" name="pp_standard_test" value="0" />
+              <?php echo $text_no; ?>
+              <?php } ?>
+            </label>
           </div>
         </div>
         <div class="control-group">
@@ -69,13 +76,13 @@
               <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select>
-          </div>
+            <span class="help-block"><?php echo $help_debug; ?></span> </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="pp_standard_total" value="<?php echo $pp_standard_total; ?>" />
-          </div>
+            <input type="text" name="pp_standard_total" value="<?php echo $pp_standard_total; ?>" placeholder="<?php echo $entry_total; ?>" />
+            <span class="help-block"><?php echo $help_total; ?></span> </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_canceled_reversal_status; ?></label>
@@ -249,7 +256,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="pp_standard_sort_order" value="<?php echo $pp_standard_sort_order; ?>" size="1" />
+            <input type="text" name="pp_standard_sort_order" value="<?php echo $pp_standard_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

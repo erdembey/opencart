@@ -14,12 +14,12 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_rate; ?></label>
           <div class="controls">
-            <textarea name="citylink_rate" cols="40" rows="5"><?php echo $citylink_rate; ?></textarea>
-          </div>
+            <textarea name="citylink_rate" cols="40" rows="5" placeholder="<?php echo $entry_rate; ?>"><?php echo $citylink_rate; ?></textarea>
+            <span class="help-block"><?php echo $help_rate; ?></span> </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_tax_class; ?></label>
@@ -68,7 +68,7 @@
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="citylink_sort_order" value="<?php echo $citylink_sort_order; ?>" size="1" />
+            <input type="text" name="citylink_sort_order" value="<?php echo $citylink_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
           </div>
         </div>
       </form>

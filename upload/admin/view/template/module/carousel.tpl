@@ -14,7 +14,7 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <div class="buttons"><a onclick="$('#form').submit();" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></a> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <table id="module" class="table">
           <thead>
             <tr>
@@ -44,9 +44,9 @@
                   <?php } ?>
                   <?php } ?>
                 </select></td>
-              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" size="1" /></td>
+              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" placeholder="<?php echo $entry_limit; ?>" class="input-mini" /></td>
 	      <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][auto]" value="<?php echo $module['auto']; ?>" size="3" /></td>
-              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][scroll]" value="<?php echo $module['scroll']; ?>" size="3" /></td>
+              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][scroll]" value="<?php echo $module['scroll']; ?>" placeholder="<?php echo $entry_scroll; ?>" class="input-mini" /></td>
 	      <td class="left">
 	      	<select name="carousel_module[<?php echo $module_row; ?>][cwrap]">
 			<?php if ($module['cwrap'] == 'null') { ?>
@@ -71,8 +71,8 @@
 			<?php } ?>
 		  </select>
 	      </td>
-              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][width]" value="<?php echo $module['width']; ?>" size="3" />
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][height]" value="<?php echo $module['height']; ?>" size="3" />
+              <td class="left"><input type="text" name="carousel_module[<?php echo $module_row; ?>][width]" value="<?php echo $module['width']; ?>" placeholder="<?php echo $entry_width; ?>" class="input-mini" />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][height]" value="<?php echo $module['height']; ?>" placeholder="<?php echo $entry_height; ?>" class="input-mini" />
                 <?php if (isset($error_image[$module_row])) { ?>
                 <span class="error"><?php echo $error_image[$module_row]; ?></span>
                 <?php } ?></td>
@@ -116,7 +116,7 @@
                   <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
                   <?php } ?>
                 </select></td>
-              <td class="right"><input type="text" name="carousel_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" /></td>
+              <td class="right"><input type="text" name="carousel_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" /></td>
               <td class="left"><a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="btn"><i class="icon-minus-sign"></i> <?php echo $button_remove; ?></a></td>
             </tr>
             <?php $module_row++; ?>
@@ -143,16 +143,16 @@ function addModule() {
 	html += '    <option value="<?php echo $banner['banner_id']; ?>"><?php echo addslashes($banner['name']); ?></option>';
 	<?php } ?>
 	html += '  </select></td>';	
-	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][limit]" value="5" size="1" /></td>';
+	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][limit]" value="5" placeholder="<?php echo $entry_limit; ?>" class="input-mini" /></td>';
 	html += '    <td class="left"><input type="text" name="carousel_module[' + module_row + '][auto]" value="0" size="1" /></td>';
-	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][scroll]" value="3" size="1" /></td>';
+	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][scroll]" value="3" placeholder="<?php echo $entry_scroll; ?>" class="input-mini" /></td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][cwrap]">';
 	html += '      <option value="null">null</option>';
 	html += '      <option value="circular">circular</option>';
 	html += '      <option value="first">first</option>';
 	html += '      <option value="last">last</option>';
 	html += '    </select></td>';
-	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][width]" value="80" size="3" /> <input type="text" name="carousel_module[' + module_row + '][height]" value="80" size="3" /></td>'; 
+	html += '  <td class="left"><input type="text" name="carousel_module[' + module_row + '][width]" value="80" placeholder="<?php echo $entry_width; ?>" class="input-mini" /> <input type="text" name="carousel_module[' + module_row + '][height]" placeholder="<?php echo $entry_height; ?>" value="80" class="input-mini" /></td>'; 
 	html += '  <td class="left"><select name="carousel_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
 	html += '    <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';
@@ -168,7 +168,7 @@ function addModule() {
     html += '    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
     html += '    <option value="0"><?php echo $text_disabled; ?></option>';
     html += '  </select></td>';
-	html += '  <td class="right"><input type="text" name="carousel_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
+	html += '  <td class="right"><input type="text" name="carousel_module[' + module_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" /></td>';
 	html += '  <td class="left"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="btn"><i class="icon-minus-sign"></i> <?php echo $button_remove; ?></a></td>';
 	html += '</tr>';
 	
