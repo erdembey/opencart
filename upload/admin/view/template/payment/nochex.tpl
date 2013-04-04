@@ -16,18 +16,18 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_email; ?></label>
+          <label class="control-label" for="input-email"><span class="required">*</span> <?php echo $entry_email; ?></label>
           <div class="controls">
-            <input type="text" name="nochex_email" value="<?php echo $nochex_email; ?>" placeholder="<?php echo $entry_email; ?>" />
+            <input type="text" name="nochex_email" value="<?php echo $nochex_email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-email" />
             <?php if ($error_email) { ?>
             <span class="error"><?php echo $error_email; ?></span>
             <?php } ?>
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_account; ?></label>
+          <label class="control-label" for="input-account"><?php echo $entry_account; ?></label>
           <div class="controls">
-            <select name="nochex_account">
+            <select name="nochex_account" id="input-account">
               <?php if ($nochex_account == 'seller') { ?>
               <option value="seller" selected="selected"><?php echo $text_seller; ?></option>
               <?php } else { ?>
@@ -42,16 +42,16 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_merchant; ?></label>
+          <label class="control-label" for="input-merchant"><span class="required">*</span> <?php echo $entry_merchant; ?></label>
           <div class="controls">
-            <input type="text" name="nochex_merchant" value="<?php echo $nochex_merchant; ?>" placeholder="<?php echo $entry_merchant; ?>" />
+            <input type="text" name="nochex_merchant" value="<?php echo $nochex_merchant; ?>" placeholder="<?php echo $entry_merchant; ?>" id="input-merchant" />
             <?php if ($error_merchant) { ?>
             <span class="error"><?php echo $error_merchant; ?></span>
             <?php } ?>
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_template; ?></label>
+          <div class="control-label"><?php echo $entry_template; ?></div>
           <div class="controls">
             <label class="radio inline">
               <?php if ($nochex_template) { ?>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_test; ?></label>
+          <div class="control-label"><?php echo $entry_test; ?></div>
           <div class="controls">
             <label class="radio inline">
               <?php if ($nochex_test) { ?>
@@ -97,15 +97,15 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_total; ?></label>
+          <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
           <div class="controls">
-            <input type="text" name="nochex_total" value="<?php echo $nochex_total; ?>" placeholder="<?php echo $entry_total; ?>" />
+            <input type="text" name="nochex_total" value="<?php echo $nochex_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" />
             <span class="help-block"><?php echo $help_total; ?></span></div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_order_status; ?></label>
+          <label class="control-label" for="input-order-status"><?php echo $entry_order_status; ?></label>
           <div class="controls">
-            <select name="nochex_order_status_id">
+            <select name="nochex_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $nochex_order_status_id) { ?>
               <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -117,9 +117,9 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_geo_zone; ?></label>
+          <label class="control-label" for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
           <div class="controls">
-            <select name="nochex_geo_zone_id">
+            <select name="nochex_geo_zone_id" id="input-geo-zone">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
               <?php if ($geo_zone['geo_zone_id'] == $nochex_geo_zone_id) { ?>
@@ -132,9 +132,9 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_status; ?></label>
+          <label class="control-label" for="input-status"><?php echo $entry_status; ?></label>
           <div class="controls">
-            <select name="nochex_status">
+            <select name="nochex_status" id="input-status">
               <?php if ($nochex_status) { ?>
               <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
               <option value="0"><?php echo $text_disabled; ?></option>
@@ -146,9 +146,9 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-name"><?php echo $entry_sort_order; ?></label>
+          <label class="control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
           <div class="controls">
-            <input type="text" name="nochex_sort_order" value="<?php echo $nochex_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" />
+            <input type="text" name="nochex_sort_order" value="<?php echo $nochex_sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="input-mini" />
           </div>
         </div>
       </form>
