@@ -6,7 +6,7 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -30,9 +30,14 @@
         <div class="control-group">
           <label class="control-label" for="input-filename"><?php echo $entry_filename; ?></label>
           <div class="controls">
-            <input type="text" name="filename" value="<?php echo $filename; ?>" placeholder="<?php echo $entry_filename; ?>" id="input-filename" />
+            <div class="input-append">
+            <input type="text" name="filename" value="<?php echo $filename; ?>" placeholder="<?php echo $entry_filename; ?>" id="input-filename" class="span2" />
             <button type="button" id="button-upload" class="btn" onclick="$('input[name=\'file\']').click();"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
-            <span class="help-block"><?php echo $help_filename; ?></span>
+            </div>
+            
+            <a data-toggle="tooltip" title="<?php echo $help_filename; ?>"><i class="icon-question-sign icon-large"></i></a>
+            
+
             <?php if ($error_filename) { ?>
             <span class="error"><?php echo $error_filename; ?></span>
             <?php } ?>
@@ -42,7 +47,9 @@
           <label class="control-label" for="input-mask"><?php echo $entry_mask; ?></label>
           <div class="controls">
             <input type="text" name="mask" value="<?php echo $mask; ?>" placeholder="<?php echo $entry_mask; ?>" id="input-mask" />
-            <span class="help-block"><?php echo $help_mask; ?></span>
+            
+            <a data-toggle="tooltip" title="<?php echo $help_mask; ?>"><i class="icon-question-sign icon-large"></i></a>
+            
             <?php if ($error_mask) { ?>
             <span class="error"><?php echo $error_mask; ?></span>
             <?php } ?>
@@ -63,7 +70,9 @@
             <?php } else { ?>
             <input type="checkbox" name="update" value="1" id="input-update" />
             <?php } ?>
-            <span class="help-block"><?php echo $help_update; ?></span></div>
+            <a data-toggle="tooltip" title="<?php echo $help_update; ?>"><i class="icon-question-sign icon-large"></i></a>
+            
+            </div>
         </div>
         <?php } ?>
       </form>

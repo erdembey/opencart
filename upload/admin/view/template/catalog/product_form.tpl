@@ -6,7 +6,9 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -70,7 +72,7 @@
                   <label class="control-label" for="input-tag<?php echo $language['language_id']; ?>"><?php echo $entry_tag; ?></label>
                   <div class="controls">
                     <input type="text" name="product_description[<?php echo $language['language_id']; ?>][tag]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['tag'] : ''; ?>" placeholder="<?php echo $entry_tag; ?>" id="input-tag<?php echo $language['language_id']; ?>" class="input-xxlarge" />
-                    <span class="help-block"><?php echo $help_tag; ?></span></div>
+                    <a data-toggle="tooltip" title="<?php echo $help_tag; ?>"><i class="icon-question-sign icon-large"></i></a></div>
                 </div>
               </div>
               <?php } ?>
@@ -90,37 +92,37 @@
               <label class="control-label" for="input-sku"><?php echo $entry_sku; ?></label>
               <div class="controls">
                 <input type="text" name="sku" value="<?php echo $sku; ?>" placeholder="<?php echo $entry_sku; ?>" id="input-sku" />
-                <span class="help-block"><?php echo $help_sku; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_sku; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-upc"><?php echo $entry_upc; ?></label>
               <div class="controls">
                 <input type="text" name="upc" value="<?php echo $upc; ?>" placeholder="<?php echo $entry_upc; ?>" id="input-upc" />
-                <span class="help-block"><?php echo $help_upc; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_upc; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-ean"><?php echo $entry_ean; ?></label>
               <div class="controls">
                 <input type="text" name="ean" value="<?php echo $ean; ?>" placeholder="<?php echo $entry_ean; ?>" id="input-ean" />
-                <span class="help-block"><?php echo $help_ean; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_ean; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-jan"><?php echo $entry_jan; ?></label>
               <div class="controls">
                 <input type="text" name="jan" value="<?php echo $jan; ?>" placeholder="<?php echo $entry_jan; ?>" id="input-jan" />
-                <span class="help-block"><?php echo $help_jan; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_jan; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-isbn"><?php echo $entry_isbn; ?></label>
               <div class="controls">
                 <input type="text" name="isbn" value="<?php echo $isbn; ?>" placeholder="<?php echo $entry_isbn; ?>" id="input-isbn" />
-                <span class="help-block"><?php echo $help_isbn; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_isbn; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-mpn"><?php echo $entry_mpn; ?></label>
               <div class="controls">
                 <input type="text" name="mpn" value="<?php echo $mpn; ?>" placeholder="<?php echo $entry_mpn; ?>" id="input-mpn" />
-                <span class="help-block"><?php echo $help_mpn; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_mpn; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-location"><?php echo $entry_location; ?></label>
@@ -159,7 +161,7 @@
               <label class="control-label" for="input-minimum"><?php echo $entry_minimum; ?></label>
               <div class="controls">
                 <input type="text" name="minimum" value="<?php echo $minimum; ?>" placeholder="<?php echo $entry_minimum; ?>" id="input-minimum" class="input-mini" />
-                <span class="help-block"><?php echo $help_minimum; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_minimum; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-subtract"><?php echo $entry_subtract; ?></label>
@@ -187,7 +189,7 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_stock_status; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_stock_status; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <div class="control-label"><?php echo $entry_shipping; ?></div>
@@ -216,12 +218,12 @@
               <label class="control-label" for="input-keyword"><?php echo $entry_keyword; ?></label>
               <div class="controls">
                 <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" />
-                <span class="help-block"><?php echo $help_keyword; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-image"><?php echo $entry_image; ?></label>
               <div class="controls">
-                <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+                <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" class="img-polaroid" /><br />
                   <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
                   <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a></div>
               </div>
@@ -299,18 +301,30 @@
             <div class="control-group">
               <label class="control-label" for="input-manufacturer"><?php echo $entry_manufacturer; ?></label>
               <div class="controls">
-                <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" />
-                <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
-                <span class="help-block"><?php echo $help_manufacturer; ?></span></div>
+                <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" data-toggle="dropdown" data-target="#autocomplete-manufacturer" />
+                <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" autocomplete="off" />
+                <a data-toggle="tooltip" title="<?php echo $help_manufacturer; ?>"><i class="icon-question-sign icon-large"></i></a>
+                <div id="autocomplete-manufacturer" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-category"><?php echo $entry_category; ?></label>
               <div class="controls">
-                <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" />
-                <span class="help-block"><?php echo $help_category; ?></span>
-                <div id="product-category">
+                <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" data-toggle="dropdown" data-target="#autocomplete-category" />
+                <a data-toggle="tooltip" title="<?php echo $help_category; ?>"><i class="icon-question-sign icon-large"></i></a>
+                <div id="autocomplete-category" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
+                <br />
+                <div id="product-category" class="well well-small scrollbox">
                   <?php foreach ($product_categories as $product_category) { ?>
-                  <div id="product-category<?php echo $product_category['category_id']; ?>" class="checkbox"><?php echo $product_category['name']; ?><img src="view/image/icon-delete.png" alt="" />
+                  <div id="product-category<?php echo $product_category['category_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $product_category['name']; ?>
                     <input type="hidden" name="product_category[]" value="<?php echo $product_category['category_id']; ?>" />
                   </div>
                   <?php } ?>
@@ -320,11 +334,17 @@
             <div class="control-group">
               <label class="control-label" for="input-filter"><?php echo $entry_filter; ?></label>
               <div class="controls">
-                <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" />
-                <span class="help-block"><?php echo $help_filter; ?></span>
-                <div id="product-filter">
+                <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" data-toggle="dropdown" data-target="#autocomplete-filter" />
+                <a data-toggle="tooltip" title="<?php echo $help_filter; ?>"><i class="icon-question-sign icon-large"></i></a>
+                <div id="autocomplete-filter" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
+                <br />
+                <div id="product-filter" class="well well-small scrollbox">
                   <?php foreach ($product_filters as $product_filter) { ?>
-                  <div id="product-filter<?php echo $product_filter['filter_id']; ?>"><?php echo $product_filter['name']; ?><img src="view/image/icon-delete.png" alt="" />
+                  <div id="product-filter<?php echo $product_filter['filter_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $product_filter['name']; ?>
                     <input type="hidden" name="product_filter[]" value="<?php echo $product_filter['filter_id']; ?>" />
                   </div>
                   <?php } ?>
@@ -334,36 +354,44 @@
             <div class="control-group">
               <div class="control-label"><?php echo $entry_store; ?></div>
               <div class="controls">
-                <label class="checkbox">
-                  <?php if (in_array(0, $product_store)) { ?>
-                  <input type="checkbox" name="product_store[]" value="0" checked="checked" />
-                  <?php echo $text_default; ?>
-                  <?php } else { ?>
-                  <input type="checkbox" name="product_store[]" value="0" />
-                  <?php echo $text_default; ?>
+                <div class="well well-small scrollbox">
+                  <label class="checkbox">
+                    <?php if (in_array(0, $product_store)) { ?>
+                    <input type="checkbox" name="product_store[]" value="0" checked="checked" />
+                    <?php echo $text_default; ?>
+                    <?php } else { ?>
+                    <input type="checkbox" name="product_store[]" value="0" />
+                    <?php echo $text_default; ?>
+                    <?php } ?>
+                  </label>
+                  <?php foreach ($stores as $store) { ?>
+                  <label class="checkbox">
+                    <?php if (in_array($store['store_id'], $product_store)) { ?>
+                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                    <?php echo $store['name']; ?>
+                    <?php } else { ?>
+                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" />
+                    <?php echo $store['name']; ?>
+                    <?php } ?>
+                  </label>
                   <?php } ?>
-                </label>
-                <?php foreach ($stores as $store) { ?>
-                <label class="checkbox">
-                  <?php if (in_array($store['store_id'], $product_store)) { ?>
-                  <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
-                  <?php echo $store['name']; ?>
-                  <?php } else { ?>
-                  <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" />
-                  <?php echo $store['name']; ?>
-                  <?php } ?>
-                </label>
-                <?php } ?>
+                </div>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-download"><?php echo $entry_download; ?></label>
               <div class="controls">
-                <input type="text" name="download" value="" placeholder="<?php echo $entry_download; ?>" id="input-download" />
-                <span class="help-block"><?php echo $help_download; ?></span>
-                <div id="product-download">
+                <input type="text" name="download" value="" placeholder="<?php echo $entry_download; ?>" id="input-download" data-toggle="dropdown" data-target="#autocomplete-download" />
+                <a data-toggle="tooltip" title="<?php echo $help_download; ?>"><i class="icon-question-sign icon-large"></i></a>
+                <div id="autocomplete-download" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
+                <br />
+                <div id="product-download" class="well well-small scrollbox">
                   <?php foreach ($product_downloads as $product_download) { ?>
-                  <div id="product-download<?php echo $product_download['download_id']; ?>"> <?php echo $product_download['name']; ?><img src="view/image/icon-delete.png" alt="" />
+                  <div id="product-download<?php echo $product_download['download_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $product_download['name']; ?>
                     <input type="hidden" name="product_download[]" value="<?php echo $product_download['download_id']; ?>" />
                   </div>
                   <?php } ?>
@@ -373,11 +401,17 @@
             <div class="control-group">
               <label class="control-label" for="input-related"><?php echo $entry_related; ?></label>
               <div class="controls">
-                <input type="text" name="related" value="" placeholder="<?php echo $entry_related; ?>" id="input-related" />
-                <span class="help-block"><?php echo $help_related; ?></span>
-                <div id="product-related">
+                <input type="text" name="related" value="" placeholder="<?php echo $entry_related; ?>" id="input-related" data-toggle="dropdown" data-target="#autocomplete-related" />
+                <a data-toggle="tooltip" title="<?php echo $help_related; ?>"><i class="icon-question-sign icon-large"></i></a>
+                <div id="autocomplete-related" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
+                <br />
+                <div id="product-related" class="well well-small scrollbox">
                   <?php foreach ($product_relateds as $product_related) { ?>
-                  <div id="product-related<?php echo $product_related['product_id']; ?>"><?php echo $product_related['name']; ?><img src="view/image/icon-delete.png" alt="" />
+                  <div id="product-related<?php echo $product_related['product_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $product_related['name']; ?>
                     <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
                   </div>
                   <?php } ?>
@@ -386,7 +420,7 @@
             </div>
           </div>
           <div class="tab-pane" id="tab-attribute">
-            <table id="attribute" class="table">
+            <table id="attribute" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <td class="left"><?php echo $entry_attribute; ?></td>
@@ -398,8 +432,13 @@
                 <?php $attribute_row = 0; ?>
                 <?php foreach ($product_attributes as $product_attribute) { ?>
                 <tr id="attribute-row<?php echo $attribute_row; ?>">
-                  <td class="left"><input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" placeholder="<?php echo $entry_attribute; ?>" />
-                    <input type="hidden" name="product_attribute[<?php echo $attribute_row; ?>][attribute_id]" value="<?php echo $product_attribute['attribute_id']; ?>" /></td>
+                  <td class="left"><input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" placeholder="<?php echo $entry_attribute; ?>" data-toggle="dropdown" data-target="#autocomplete-attribute<?php echo $attribute_row; ?>" autocomplete="off" />
+                    <input type="hidden" name="product_attribute[<?php echo $attribute_row; ?>][attribute_id]" value="<?php echo $product_attribute['attribute_id']; ?>" />
+                    <div id="autocomplete-attribute<?php echo $attribute_row; ?>" class="typeahead dropdown">
+                      <ul class="dropdown-menu">
+                        <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                      </ul>
+                    </div></td>
                   <td class="left"><?php foreach ($languages as $language) { ?>
                     <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5" placeholder="<?php echo $entry_text; ?>"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
                     <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" align="top" /><br />
@@ -418,22 +457,17 @@
             </table>
           </div>
           <div class="tab-pane" id="tab-option">
-            
-            
-             <div class="control-group">
-              <label class="control-label" for="input-download"><?php echo $entry_option; ?></label>
+            <div class="control-group">
+              <label class="control-label" for="input-option"><?php echo $entry_option; ?></label>
               <div class="controls">
-              
-              <input type="text" name="option" value="" class="input-xxxlarge" />
-              
-                <button type="text" value="" id="input-option" class="btn"><i class="icon-plus"></i> Add Option</button>
-                
-                
+                <input type="text" name="option" value="" id="input-option" class="input-xxxlarge" data-toggle="dropdown" data-target="#autocomplete-option" />
+                <div id="autocomplete-option" class="typeahead dropdown">
+                  <ul class="dropdown-menu">
+                    <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>
+                  </ul>
+                </div>
               </div>
-            </div>   
-            
-            
-                        
+            </div>
             <div class="tabbable tabs-left">
               <ul class="nav nav-tabs" id="option">
                 <?php $option_row = 0; ?>
@@ -443,10 +477,6 @@
                 <?php } ?>
               </ul>
               <div class="tab-content">
-              
-              
-          
-              
                 <?php $option_row = 0; ?>
                 <?php $option_value_row = 0; ?>
                 <?php foreach ($product_options as $product_option) { ?>
@@ -518,7 +548,7 @@
                   </div>
                   <?php } ?>
                   <?php if ($product_option['type'] == 'select' || $product_option['type'] == 'radio' || $product_option['type'] == 'checkbox' || $product_option['type'] == 'image') { ?>
-                  <table id="option-value<?php echo $option_row; ?>" class="table">
+                  <table id="option-value<?php echo $option_row; ?>" class="table table-striped table-bordered table-hover">
                     <thead>
                       <tr>
                         <td class="left"><?php echo $entry_option_value; ?></td>
@@ -621,7 +651,7 @@
             </div>
           </div>
           <div class="tab-pane" id="tab-discount">
-            <table id="discount" class="table">
+            <table id="discount" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <td class="left"><?php echo $entry_customer_group; ?></td>
@@ -665,7 +695,7 @@
             </table>
           </div>
           <div class="tab-pane" id="tab-special">
-            <table id="special" class="table">
+            <table id="special" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <td class="left"><?php echo $entry_customer_group; ?></td>
@@ -707,7 +737,7 @@
             </table>
           </div>
           <div class="tab-pane" id="tab-image">
-            <table id="images" class="table">
+            <table id="images" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <td class="left"><?php echo $entry_image; ?></td>
@@ -719,7 +749,7 @@
                 <?php $image_row = 0; ?>
                 <?php foreach ($product_images as $product_image) { ?>
                 <tr id="image-row<?php echo $image_row; ?>">
-                  <td class="left"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
+                  <td class="left"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" class="img-polaroid" />
                       <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
                       <br />
                       <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
@@ -742,7 +772,7 @@
               <label class="control-label" for="input-points"><?php echo $entry_points; ?></label>
               <div class="controls">
                 <input type="text" name="points" value="<?php echo $points; ?>" placeholder="<?php echo $entry_points; ?>" id="input-points" class="input-small" />
-                <span class="help-block"><?php echo $help_stock_status; ?></span></div>
+                <a data-toggle="tooltip" title="<?php echo $help_stock_status; ?>"><i class="icon-question-sign icon-large"></i></a></div>
             </div>
             <table class="table table-striped table-bordered table-hover">
               <thead>
@@ -808,9 +838,6 @@
     </div>
   </div>
 </div>
-<script type="text/javascript"><!--
-$('.help-inline .icon-question-sign').tooltip();
---></script> 
 <script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script> 
 <script type="text/javascript"><!--
 <?php foreach ($languages as $language) { ?>
@@ -825,205 +852,226 @@ CKEDITOR.replace('input-description<?php echo $language['language_id']; ?>', {
 <?php } ?>
 //--></script> 
 <script type="text/javascript"><!--
-$.widget('custom.catcomplete', $.ui.autocomplete, {
-	_renderMenu: function(ul, items) {
-		var self = this, currentCategory = '';
-		
-		$.each(items, function(index, item) {
-			if (item.category != currentCategory) {
-				ul.append('<li class="ui-autocomplete-category">' + item.category + '</li>');
+// Manufacturer
+var timer = null;
+
+$('input[name=\'manufacturer\']').on('click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
+		$.ajax({
+			url: 'index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '<li data-value="0"><a href="#"><?php echo $text_none; ?></a></li>';
 				
-				currentCategory = item.category;
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['manufacturer_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
+					}
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
 			}
-			
-			self._renderItem(ul, item);
 		});
+	}, 250);
+});
+
+$('#autocomplete-manufacturer').delegate('a', 'click', function(e) {
+	e.preventDefault();
+	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$('input[name=\'manufacturer\']').val($(this).text());
+		$('input[name=\'manufacturer_id\']').val(value);
 	}
 });
 
-// Manufacturer
-$('input[name=\'manufacturer\']').autocomplete({
-	minLength: 0,
-	delay: 500,
-	source: function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-			dataType: 'json',
-			success: function(json) {		
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.manufacturer_id
-					}
-				}));
-			}
-		});
-	},
-	select: function(event, ui) {
-		$('input[name=\'manufacturer\']').val(ui.item.label);
-		$('input[name=\'manufacturer_id\']').val(ui.item.value);
-		
-		return false;
-	},
-	focus: function(event, ui) {
-      return false;
-   }
-});
 
 // Category
-$('input[name=\'category\']').autocomplete({
-	delay: 500,
-	source: function(request, response) {
+var timer = null;
+
+$('input[name=\'category\']').on('click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
 		$.ajax({
-			url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-			dataType: 'json',
-			success: function(json) {		
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.category_id
+			url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '';
+				
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['category_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
 					}
-				}));
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
 			}
 		});
-	}, 
-	select: function(event, ui) {
-		$('#product-category' + ui.item.value).remove();
-		
-		$('#product-category').append('<div id="product-category' + ui.item.value + '">' + ui.item.label + '<img src="view/image/icon-delete.png" alt="" /><input type="hidden" name="product_category[]" value="' + ui.item.value + '" /></div>');
-
-		$('#product-category div:odd').attr('class', 'odd');
-		$('#product-category div:even').attr('class', 'even');
-				
-		return false;
-	},
-	focus: function(event, ui) {
-      return false;
-   }
+	}, 250);
 });
 
-$('#product-category div img').on('click', function() {
-	$(this).parent().remove();
+$('#autocomplete-category').delegate('a', 'click', function(e) {
+	e.preventDefault();
 	
-	$('#product-category div:odd').attr('class', 'odd');
-	$('#product-category div:even').attr('class', 'even');	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$('#product-category' + value).remove();
+		
+		$('#product-category').append('<div id="product-category' + value + '"><i class="icon-minus-sign"></i> ' + $(this).text() + '<input type="hidden" name="category_filter[]" value="' + value + '" /></div>');
+	}
 });
+
+$('#product-category').delegate('.icon-minus-sign', 'click', function() {
+	$(this).parent().remove();
+});
+
 
 // Filter
-$('input[name=\'filter\']').autocomplete({
-	delay: 500,
-	source: function(request, response) {
+var timer = null;
+
+$('input[name=\'filter\']').on('click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
 		$.ajax({
-			url: 'index.php?route=catalog/filter/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-			dataType: 'json',
-			success: function(json) {		
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.filter_id
+			url: 'index.php?route=catalog/filter/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '';
+				
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['filter_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
 					}
-				}));
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
 			}
 		});
-	}, 
-	select: function(event, ui) {
-		$('#product-filter' + ui.item.value).remove();
-		
-		$('#product-filter').append('<div id="product-filter' + ui.item.value + '">' + ui.item.label + '<img src="view/image/icon-delete.png" alt="" /><input type="hidden" name="product_filter[]" value="' + ui.item.value + '" /></div>');
-
-		$('#product-filter div:odd').attr('class', 'odd');
-		$('#product-filter div:even').attr('class', 'even');
-				
-		return false;
-	},
-	focus: function(event, ui) {
-      return false;
-   }
+	}, 250);
 });
 
-$('#product-filter div img').on('click', function() {
-	$(this).parent().remove();
+$('#autocomplete-filter').delegate('a', 'click', function(e) {
+	e.preventDefault();
 	
-	$('#product-filter div:odd').attr('class', 'odd');
-	$('#product-filter div:even').attr('class', 'even');	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$('#product-filter' + value).remove();
+		
+		$('#product-filter').append('<div id="product-filter' + value + '"><i class="icon-minus-sign"></i> ' + $(this).text() + '<input type="hidden" name="product_filter[]" value="' + value + '" /></div>');
+	}
+});
+
+$('#product-filter').delegate('.icon-minus-sign', 'click', function() {
+	$(this).parent().remove();
 });
 
 // Downloads
-$('input[name=\'download\']').autocomplete({
-	delay: 500,
-	source: function(request, response) {
+var timer = null;
+
+$('input[name=\'download\']').on('click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
 		$.ajax({
-			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-			dataType: 'json',
-			success: function(json) {		
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.download_id
+			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '';
+				
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['download_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
 					}
-				}));
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
 			}
 		});
-	}, 
-	select: function(event, ui) {
-		$('#product-download' + ui.item.value).remove();
-		
-		$('#product-download').append('<div id="product-download' + ui.item.value + '">' + ui.item.label + '<img src="view/image/icon-delete.png" alt="" /><input type="hidden" name="product_download[]" value="' + ui.item.value + '" /></div>');
-
-		$('#product-download div:odd').attr('class', 'odd');
-		$('#product-download div:even').attr('class', 'even');
-				
-		return false;
-	},
-	focus: function(event, ui) {
-      return false;
-   }
+	}, 250);
 });
 
-$('#product-download div img').on('click', function() {
-	$(this).parent().remove();
+$('#autocomplete-download').delegate('a', 'click', function(e) {
+	e.preventDefault();
 	
-	$('#product-download div:odd').attr('class', 'odd');
-	$('#product-download div:even').attr('class', 'even');	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$('#product-download' + value).remove();
+		
+		$('#product-download').append('<div id="product-download' + value + '"><i class="icon-minus-sign"></i> ' + $(this).text() + '<input type="hidden" name="product_download[]" value="' + value + '" /></div>');
+	}
+});
+
+$('#product-download').delegate('.icon-minus-sign', 'click', function() {
+	$(this).parent().remove();
 });
 
 // Related
-$('input[name=\'related\']').autocomplete({
-	delay: 500,
-	source: function(request, response) {
+var timer = null;
+
+$('input[name=\'related\']').on('click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
 		$.ajax({
-			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-			dataType: 'json',
-			success: function(json) {		
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.product_id
+			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '';
+				
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['product_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
 					}
-				}));
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
 			}
 		});
-	}, 
-	select: function(event, ui) {
-		$('#product-related' + ui.item.value).remove();
-		
-		$('#product-related').append('<div id="product-related' + ui.item.value + '">' + ui.item.label + '<img src="view/image/icon-delete.png" alt="" /><input type="hidden" name="product_related[]" value="' + ui.item.value + '" /></div>');
-
-		$('#product-related div:odd').attr('class', 'odd');
-		$('#product-related div:even').attr('class', 'even');
-				
-		return false;
-	},
-	focus: function(event, ui) {
-      return false;
-   }
+	}, 250);
 });
 
-$('#product-related div img').on('click', function() {
-	$(this).parent().remove();
+$('#autocomplete-related').delegate('a', 'click', function(e) {
+	e.preventDefault();
 	
-	$('#product-related div:odd').attr('class', 'odd');
-	$('#product-related div:even').attr('class', 'even');	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$('#product-related' + value).remove();
+		
+		$('#product-related').append('<div id="product-related' + value + '"><i class="icon-minus-sign"></i> ' + $(this).text() + '<input type="hidden" name="product_related[]" value="' + value + '" /></div>');
+	}
+});
+
+$('#product-related').delegate('.icon-minus-sign', 'click', function() {
+	$(this).parent().remove();
 });
 //--></script> 
 <script type="text/javascript"><!--
@@ -1031,7 +1079,13 @@ var attribute_row = <?php echo $attribute_row; ?>;
 
 function addAttribute() {
     html  = '<tr id="attribute-row' + attribute_row + '">';
-	html += '  <td class="left"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" placeholder="<?php echo $entry_attribute; ?>" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" /></td>';
+	html += '  <td class="left"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" placeholder="<?php echo $entry_attribute; ?>" data-toggle="dropdown" data-target="#autocomplete-attribute' + attribute_row + '" autocomplete="off" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" />';
+	html += '    <div id="autocomplete-attribute' + attribute_row + '" class="typeahead dropdown">';
+    html += '      <ul class="dropdown-menu">';
+    html += '        <li class="disabled"><a href="#"><i class="icon-spinner icon-spin"></i><?php echo $text_loading; ?></a></li>';
+    html += '      </ul>';
+    html += '    </div>';
+	html += '  </td>';
 	html += '  <td class="left">';
 	<?php foreach ($languages as $language) { ?>
 	html += '<textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5" placeholder="<?php echo $entry_text; ?>"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" align="top" /><br />';
@@ -1047,41 +1101,43 @@ function addAttribute() {
 	attribute_row++;
 }
 
-function attributeautocomplete(attribute_row) {
-	$('input[name=\'product_attribute[' + attribute_row + '][name]\']').catcomplete({
-		delay: 500,
-		source: function(request, response) {
-			$.ajax({
-				url: 'index.php?route=catalog/attribute/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
-				dataType: 'json',
-				success: function(json) {	
-					response($.map(json, function(item) {
-						return {
-							category: item.attribute_group,
-							label: item.name,
-							value: item.attribute_id
-						}
-					}));
-				}
-			});
-		}, 
-		select: function(event, ui) {
-			
-			alert(ui.item);
-			
-			$('input[name=\'product_attribute[' + attribute_row + '][name]\']').val(ui.item.label);
-			$('input[name=\'product_attribute[' + attribute_row + '][attribute_id]\']').val(ui.item.value);
-			
-			//return false;
-		},
-		focus: function(event, ui) {
-      		//return false;
-   		}
-	});
-}
+var timer = null;
 
-$('#attribute tbody').each(function(index, element) {
-	attributeautocomplete(index);
+$('#attribute').delegate('input[data-toggle=\'dropdown\']', 'click keyup', function() {
+	var input = this;
+	
+	if (timer != null) {
+		clearTimeout(timer);
+	}
+
+	timer = setTimeout(function(){
+		$.ajax({
+			url: 'index.php?route=catalog/attribute/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent($(input).val()),
+			dataType: 'json',			
+			success: function(json) {
+				html = '';
+				
+				if (json) {
+					for (i = 0; i < json.length; i++) {
+						html += '<li data-value="' + json[i]['attribute_id'] + '"><a href="#">' + json[i]['name'] + '</a></li>';
+					}
+				}
+				
+				$($(input).attr('data-target')).find('ul').html(html);
+			}
+		});
+	}, 250);
+});
+
+$('#attribute').delegate('.dropdown-menu a', 'click', function(e) {
+	e.preventDefault();
+	
+	var value = $(this).parent().attr('data-value');
+	
+	if (typeof value !== 'undefined') {
+		$(this).parent().parent().parent().parent().find('input[name*=\'name\']').val($(this).text());
+		$(this).parent().parent().parent().parent().find('input[name*=\'attribute_id\']').val(value);
+	}
 });
 //--></script> 
 <script type="text/javascript"><!--	
@@ -1164,7 +1220,7 @@ $('input[name=\'option\']').catcomplete({
 		}
 			
 		if (ui.item.type == 'select' || ui.item.type == 'radio' || ui.item.type == 'checkbox' || ui.item.type == 'image') {
-			html += '  <table id="option-value' + option_row + '" class="table">';
+			html += '  <table id="option-value' + option_row + '" class="table table-striped table-bordered table-hover">';
 			html += '  	 <thead>'; 
 			html += '      <tr>';
 			html += '        <td class="left"><?php echo $entry_option_value; ?></td>';
@@ -1323,7 +1379,7 @@ var image_row = <?php echo $image_row; ?>;
 
 function addImage() {
 	html  = '<tr id="image-row' + image_row + '">';
-	html += '  <td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br /><a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a></div></td>';
+	html += '  <td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" class="img-polaroid" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br /><a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a></div></td>';
 	html += '  <td class="right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="input-mini" /></td>';
 	html += '  <td class="left"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="btn"><i class="icon-minus-sign"></i> <?php echo $button_remove; ?></a></td>';
 	html += '</tr>';

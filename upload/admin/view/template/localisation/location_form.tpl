@@ -6,7 +6,7 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -14,7 +14,9 @@
     </div>
     <div class="box-content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <div class="buttons"><button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button> <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
+        <div class="buttons">
+          <button type="submit" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button>
+          <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
         <div class="control-group">
           <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_name; ?></label>
           <div class="controls">
@@ -85,9 +87,13 @@
         <div class="control-group">
           <label class="control-label" for="input-geocode"><span class="required">*</span> <?php echo $entry_geocode; ?></label>
           <div class="controls">
-            <input type="text" name="geocode" value="<?php echo $geocode; ?>" placeholder="<?php echo $entry_geocode; ?>" id="input-geocode" />
-            <input type="button" onclick="getGeoCode()" value="<?php echo $button_geocode; ?>" class="btn" />
-            <span class="help-block"><?php echo $help_geocode; ?></span>
+            <div class="input-append">
+              <input type="text" name="geocode" value="<?php echo $geocode; ?>" placeholder="<?php echo $entry_geocode; ?>" class="span2" id="input-geocode" />
+              <button type="button" onclick="getGeoCode()" class="btn"><i class="icon-search"></i> <?php echo $button_geocode; ?></button>
+            </div>
+
+            
+            <a data-toggle="tooltip" title="<?php echo $help_geocode; ?>"><i class="icon-question-sign icon-large"></i></a>
             <?php if ($error_geocode) { ?>
             <span class="error"><?php echo $error_geocode; ?></span>
             <?php } ?>
@@ -96,7 +102,7 @@
         <div class="control-group">
           <label class="control-label" for="input-image"><?php echo $entry_image; ?></label>
           <div class="controls">
-            <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
+            <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" class="img-polaroid" />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               <br />
               <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a></div>
@@ -106,13 +112,19 @@
           <label class="control-label" for="input-open"><?php echo $entry_open; ?></label>
           <div class="controls">
             <textarea name="open" cols="40" rows="5" placeholder="<?php echo $entry_open; ?>" id="input-open"><?php echo $open; ?></textarea>
-            <span class="help-block"><?php echo $help_open; ?></span></div>
+
+            
+            <a data-toggle="tooltip" title="<?php echo $help_open; ?>"><i class="icon-question-sign icon-large"></i></a>
+            </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-comment"><?php echo $entry_comment; ?></label>
           <div class="controls">
             <textarea name="comment" cols="40" rows="5" placeholder="<?php echo $entry_comment; ?>" id="input-comment"><?php echo $comment; ?></textarea>
-            <span class="help-block"><?php echo $help_comment; ?></span></div>
+
+            
+            <a data-toggle="tooltip" title="<?php echo $help_comment; ?>"><i class="icon-question-sign icon-large"></i></a>
+            </div>
         </div>
       </form>
     </div>
@@ -121,6 +133,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
 <script type="text/javascript"><!--
 function getGeoCode() { 
+	
+
 	var address = new Array();
 	
 	address[0] = $('input[name=\'address_1\']').attr('value');
@@ -141,6 +155,8 @@ function getGeoCode() {
 		} else {
 			alert('<?php echo addslashes($text_geocode); ?> ' + status);
 		}
+		
+		
 	});
 }    
 //--></script> 
@@ -174,13 +190,13 @@ function image_upload(field, thumb) {
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
-		url: 'index.php?route=setting/location/country&token=<?php echo $token; ?>&country_id=' + this.value,
+		url: 'index.php?route=localisation/location/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('select[name=\'country_id\']').after('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+			$('select[name=\'country_id\']').after(' <i class="icon-spinner icon-spin"></i>');
 		},
 		complete: function() {
-			$('.loading').remove();
+			$('.icon-spinner').remove();
 		},			
 		success: function(json) {
 			if (json['postcode_required'] == '1') {

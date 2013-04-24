@@ -23,20 +23,30 @@ $_['column_date_added']   = 'Ekleme Tarihi';
 $_['column_action']       = 'Eylem';
 
 // Entry
-$_['entry_name']          = 'Kupon Adı:';
-$_['entry_code']          = 'Kod:<br /><span class="help">İndirim kuponu için gerekli kod.</span>';
-$_['entry_type']          = 'Türü:<br /><span class="help">Yüzde ya da Sabit miktar.</span>';
-$_['entry_discount']      = 'İndirim:';
-$_['entry_logged']        = 'Müşteri Girişi:<br /><span class="help">Müşteri kuponu kullanabilmesi için giriş yapmasını gerektirir.</span>';
-$_['entry_shipping']      = 'Ücretsiz Kargo:';
-$_['entry_total']         = 'Toplam Tutara Göre:<br /><span class="help">Toplam sipariş tutarı belirtilen rakam üzerindeyse indirim kuponunu kullanılsın</span>';
-$_['entry_category']      = 'Kategori:<br /><span class="help">Seçtiğiniz kategori altındaki ürünlerden seçiniz</span>';
-$_['entry_product']       = 'Ürünler:<br /><span class="help">Kupon seçilen ürünlere uygulanacaktır. Sepetteki tüm ürünlere uygulamak için ürün seçemyiniz</span>';
-$_['entry_date_start']    = 'Başlangıç Tarihi:';
-$_['entry_date_end']      = 'Bitiş Tarihi:';
-$_['entry_uses_total']    = 'Kupon Başına Kullanım:<br /><span class="help">Tüm müşterilerin bu kuponu kaç kez kullanabileceğini belirleyin. Sınırsız için boş bırakın.</span>';
-$_['entry_uses_customer'] = 'Müşteri Başına Kullanım:<br /><span class="help">Tek müşterinin bu kuponu kaç kez kullanabileceğini belirleyin. Sınırsız için boş bırakın.</span>';
-$_['entry_status']        = 'Durumu:';
+$_['entry_name']          = 'Kupon Adı';
+$_['entry_code']          = 'Kod';
+$_['entry_type']          = 'Türü';
+$_['entry_discount']      = 'İndirim';
+$_['entry_logged']        = 'Müşteri Girişi';
+$_['entry_shipping']      = 'Ücretsiz Kargo';
+$_['entry_total']         = 'Toplam Tutara Göre';
+$_['entry_category']      = 'Kategori';
+$_['entry_product']       = 'Ürünler';
+$_['entry_date_start']    = 'Başlangıç Tarihi';
+$_['entry_date_end']      = 'Bitiş Tarihi';
+$_['entry_uses_total']    = 'Kupon Başına Kullanım';
+$_['entry_uses_customer'] = 'Müşteri Başına Kullanım';
+$_['entry_status']        = 'Durumu';
+
+// Help
+$_['help_code']			  = 'İndirim kuponu için gerekli kod.';
+$_['help_type']           = 'Yüzde ya da Sabit miktar.';
+$_['help_logged']         = 'Müşteri kuponu kullanabilmesi için giriş yapmasını gerektirir.';
+$_['help_total']          = 'Toplam sipariş tutarı belirtilen rakam üzerindeyse indirim kuponunu kullanılsın.';
+$_['help_category']       = 'Seçtiğiniz kategori altındaki ürünlerden seçiniz.';
+$_['help_product']        = 'Kupon seçilen ürünlere uygulanacaktır. Sepetteki tüm ürünlere uygulamak için ürün seçemyiniz.';
+$_['help_uses_total']     = 'Tüm müşterilerin bu kuponu kaç kez kullanabileceğini belirleyin. Sınırsız için boş bırakın.';
+$_['help_uses_customer']  = 'Tek müşterinin bu kuponu kaç kez kullanabileceğini belirleyin. Sınırsız için boş bırakın.';
 
 // Error
 $_['error_permission']    = 'Uyarı: Kuponları düzenleme iznine sahip değilsiniz!';

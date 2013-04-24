@@ -11,21 +11,21 @@ $_['text_edit_address'] = 'Adresi Düzenle';
 $_['text_insert']       = 'Adresinizi başarılı bir şekilde eklediniz';
 $_['text_update']       = 'Adresiniz başarılı bir şekilde güncellediniz';
 $_['text_delete']       = 'Adresiniz başarılı bir şekilde sildiniz';
-$_['text_empty']        = 'You have no addresses in your account.';
+$_['text_empty']		= 'Hesabınıza kayıtlı hiç adres yok.';
 
 // Entry
-$_['entry_firstname']   = 'Ad:';
-$_['entry_lastname']    = 'Soyad:';
-$_['entry_company']     = 'Şirket Adı:';
+$_['entry_firstname']   = 'Ad';
+$_['entry_lastname']    = 'Soyad';
+$_['entry_company']     = 'Şirket Adı';
 $_['entry_company_id']  = 'Vergi Dairesi:';
 $_['entry_tax_id']      = 'T.C./Vergi No:';
-$_['entry_address_1']   = 'Adres 1:';
-$_['entry_address_2']   = 'Adres 2:';
-$_['entry_postcode']    = 'Posta Kodu:';
-$_['entry_city']        = 'İlçe / Semt:';
-$_['entry_country']     = 'Ülke:';
-$_['entry_zone']        = 'Şehir:';
-$_['entry_default']     = 'Varsayılan Adres:';
+$_['entry_address_1']   = 'Adres 1';
+$_['entry_address_2']   = 'Adres 2';
+$_['entry_postcode']    = 'Posta Kodu';
+$_['entry_city']        = 'İlçe / Semt';
+$_['entry_country']     = 'Ülke';
+$_['entry_zone']        = 'Şehir';
+$_['entry_default']     = 'Varsayılan Adres';
 
 // Error
 $_['error_delete']      = 'Uyarı: En az bir adres yazmalısınız!';

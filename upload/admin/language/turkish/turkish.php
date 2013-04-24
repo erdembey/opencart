@@ -22,11 +22,11 @@ $_['text_unselect_all']       		= 'Tüm Seçimi Kaldır';
 $_['text_all_zones']          		= 'Hepsini Kapsa';
 $_['text_default']            		= ' <b>(Varsayılan)</b>';
 $_['text_close']              		= 'Kapalı';
-$_['text_pagination']         		= 'Gösterilen: {start} ile {end} arası, toplam: {total} ({pages} Sayfa)';
+$_['text_pagination']         		= 'Gösterilen: %d ile %d arası, toplam: %d (%d Sayfa)';
 $_['text_no_results']         		= 'Gösterilecek sonuç yok!';
 $_['text_edit']               		= 'Düzenle';
 $_['text_view']						= 'Göster';
-$_['text_home']               		= 'Anasayfa';
+$_['text_home']               		= '<i class="icon-home"></i>';
 
 // Button
 $_['button_insert']           		= 'Ekle';

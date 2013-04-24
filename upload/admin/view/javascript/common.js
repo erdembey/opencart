@@ -26,7 +26,7 @@ $(document).ready(function() {
 	route = getURLVar('route');
 	
 	if (!route) {
-		$('#dashboard').addClass('selected');
+		$('#dashboard').addClass('active');
 	} else {
 		part = route.split('/');
 		
@@ -39,5 +39,9 @@ $(document).ready(function() {
 		$('a[href*=\'' + url + '\']').parents('li[id]').addClass('selected');
 	}
 	
-	$('#help-keyword').tooltip({'title': '<?php echo addslashes($help_keyword); ?>', trigger: 'hover'});
+	$('[data-toggle=\'tooltip\']').tooltip({
+		'placement': 'top',
+		'animation': false,
+		'html': true
+	});
 });

@@ -6,7 +6,7 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -286,7 +286,10 @@
               <label class="control-label" for="input-points"><?php echo $entry_points; ?></label>
               <div class="controls">
                 <input type="text" name="points" value="" placeholder="<?php echo $entry_points; ?>" id="input-points" />
-                <span class="help-block"><?php echo $help_points; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_points; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <button id="button-reward" class="btn"><i class="icon-plus-sign"></i> <?php echo $button_add_reward; ?></button>
           </div>
@@ -417,10 +420,10 @@ function country(element, index, zone_id) {
 			url: 'index.php?route=sale/customer/country&token=<?php echo $token; ?>&country_id=' + element.value,
 			dataType: 'json',
 			beforeSend: function() {
-				$('select[name=\'address[' + index + '][country_id]\']').after('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+				$('select[name=\'address[' + index + '][country_id]\']').after(' <i class="icon-spinner icon-spin"></i>');
 			},
 			complete: function() {
-				$('.loading').remove();
+				$('.icon-spinner').remove();
 			},			
 			success: function(json) {
 				if (json['postcode_required'] == '1') {

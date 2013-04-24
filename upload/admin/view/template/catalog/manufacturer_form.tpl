@@ -6,7 +6,7 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -53,12 +53,15 @@
           <label class="control-label" for="input-keyword"><?php echo $entry_keyword; ?></label>
           <div class="controls">
             <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" />
-            <span class="help-block"><?php echo $help_keyword; ?></span></div>
+            
+            <a data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><i class="icon-question-sign icon-large"></i></a>
+            
+            </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-name"><?php echo $entry_image; ?></label>
           <div class="controls">
-            <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
+            <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" class="img-polaroid" />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               <br />
               <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a></div>
@@ -74,9 +77,6 @@
     </div>
   </div>
 </div>
-<script type="text/javascript"><!--
-$('.help-inline .icon-question-sign').tooltip();
---></script> 
 <script type="text/javascript"><!--
 function image_upload(field, thumb) {
 	$('#dialog').remove();

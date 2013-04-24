@@ -24,7 +24,8 @@ $_['text_pagination']               = 'Showing %d to %d of %d (%d Pages)';
 $_['text_no_results']               = 'No results!';
 $_['text_edit']                     = 'Edit';
 $_['text_view']                     = 'View';
-$_['text_home']                     = 'Home';
+$_['text_home']                     = '<i class="icon-home icon-large"></i>';
+$_['text_loading']                  = 'Loading..';
 
 // Button
 $_['button_insert']                 = 'Insert';

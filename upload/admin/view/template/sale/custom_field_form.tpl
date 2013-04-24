@@ -6,7 +6,7 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -231,7 +231,10 @@
               <option value="zone_id"><?php echo $text_zone; ?></option>
               <?php } ?>
             </select>
-            <span class="help-block"><?php echo $help_position; ?></span></div>
+            
+            <a data-toggle="tooltip" title="<?php echo $help_position; ?>"><i class="icon-question-sign icon-large"></i></a>
+            
+            </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="input-status"><?php echo $entry_status; ?></label>
@@ -253,7 +256,7 @@
             <input type="text" name="sort_order" value="<?php echo $sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="input-mini" />
           </div>
         </div>
-        <table id="custom-field-value" class="table">
+        <table id="custom-field-value" class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
               <td class="left"><span class="required">*</span> <?php echo $entry_custom_value; ?></td>

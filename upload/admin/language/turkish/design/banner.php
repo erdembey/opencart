@@ -17,11 +17,12 @@ $_['column_status']      = 'Durumu';
 $_['column_action']      = 'Eylem';
 
 // Entry
-$_['entry_name']         = 'Afiş Adı:';
-$_['entry_title']        = 'Başlık:';
-$_['entry_link']         = 'Bağlantı:';
-$_['entry_image']        = 'Resim:';
-$_['entry_status']       = 'Durumu:';
+$_['entry_name']         = 'Afiş Adı';
+$_['entry_title']        = 'Başlık';
+$_['entry_link']         = 'Bağlantı';
+$_['entry_image']        = 'Resim';
+$_['entry_status']       = 'Durumu';
+$_['entry_sort_order']   = 'Sıralama';
 
 // Error
 $_['error_permission']   = 'Uyarı: Afişleri düzenleme iznine sahip değilsiniz!';

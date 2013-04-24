@@ -6,10 +6,10 @@
     <?php } ?>
   </ul>
   <?php if ($error_warning) { ?>
-  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?></div>
+  <div class="alert alert-error"><i class="icon-exclamation-sign"></i> <?php echo $error_warning; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <?php if ($success) { ?>
-  <div class="alert alert-success"><i class="icon-ok-sign"></i> <?php echo $success; ?></div>
+  <div class="alert alert-success"><i class="icon-ok-sign"></i> <?php echo $success; ?> <button type="button" class="close" data-dismiss="alert">&times;</button></div>
   <?php } ?>
   <div class="box">
     <div class="box-heading">
@@ -34,7 +34,10 @@
               <label class="control-label" for="input-url"><span class="required">*</span> <?php echo $entry_url; ?></label>
               <div class="controls">
                 <input type="text" name="config_url" value="<?php echo $config_url; ?>" placeholder="<?php echo $entry_url; ?>" id="input-url" class="xxlarge" />
-                <span class="help-block"><?php echo $help_url; ?></span>
+
+                
+                <a data-toggle="tooltip" title="<?php echo $help_url; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
                 <?php if ($error_url) { ?>
                 <span class="error"><?php echo $error_url; ?></span>
                 <?php } ?>
@@ -44,7 +47,11 @@
               <label class="control-label" for="input-ssl"><?php echo $entry_ssl; ?></label>
               <div class="controls">
                 <input type="text" name="config_ssl" value="<?php echo $config_ssl; ?>" placeholder="<?php echo $entry_ssl; ?>" id="input-ssl" class="xxlarge" />
-                <span class="help-block"><?php echo $help_ssl; ?></span></div>
+               
+                <a data-toggle="tooltip" title="<?php echo $help_ssl; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-name"><span class="required">*</span> <?php echo $entry_name; ?></label>
@@ -117,7 +124,7 @@
             <div class="control-group">
               <label class="control-label" for="input-template"><?php echo $entry_template; ?></label>
               <div class="controls">
-                <select name="config_template" id="input-template" onchange="$('#template').load('index.php?route=setting/store/template&token=<?php echo $token; ?>&template=' + encodeURIComponent(this.value));">
+                <select name="config_template" id="input-template">
                   <?php foreach ($templates as $template) { ?>
                   <?php if ($template == $config_template) { ?>
                   <option value="<?php echo $template; ?>" selected="selected"><?php echo $template; ?></option>
@@ -126,8 +133,8 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <div id="template"> </div>
-              </div>
+                <br />
+                <img src="" alt="" title="" id="template" class="img-polaroid" /> </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-layout"><?php echo $entry_layout; ?></label>
@@ -201,7 +208,9 @@
               <label class="control-label" for="input-catalog-limit"><span class="required">*</span> <?php echo $entry_catalog_limit; ?></label>
               <div class="controls">
                 <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" placeholder="<?php echo $entry_catalog_limit; ?>" id="input-catalog-limit" class="input-mini" />
-                <span class="help-block"><?php echo $help_catalog_limit; ?></span>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_catalog_limit; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
                 <?php if ($error_catalog_limit) { ?>
                 <span class="error"><?php echo $error_catalog_limit; ?></span>
                 <?php } ?>
@@ -211,7 +220,9 @@
               <label class="control-label" for="input-list-description-limit"><span class="required">*</span> <?php echo $entry_list_description_limit; ?></label>
               <div class="controls">
                 <input type="text" name="config_list_description_limit" value="<?php echo $config_list_description_limit; ?>" placeholder="<?php echo $entry_list_description_limit; ?>" id="input-list-description-limit" class="input-mini" />
-                <span class="help-block"><?php echo $help_list_description_limit; ?></span>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_list_description_limit; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
                 <?php if ($error_list_description_limit) { ?>
                 <span class="error"><?php echo $error_list_description_limit; ?></span>
                 <?php } ?>
@@ -257,7 +268,10 @@
                   <option value="payment"><?php echo $text_payment; ?></option>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_tax_default; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_tax_default; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-tax-customer"><?php echo $entry_tax_customer; ?></label>
@@ -275,7 +289,9 @@
                   <option value="payment"><?php echo $text_payment; ?></option>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_tax_customer; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_tax_customer; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
             <h2><?php echo $text_account; ?></h2>
             <div class="control-group">
@@ -290,7 +306,9 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_customer_group; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_customer_group; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
             <div class="control-group">
               <div class="control-label"><?php echo $entry_customer_group_display; ?></div>
@@ -306,7 +324,9 @@
                   <?php } ?>
                 </label>
                 <?php } ?>
-                <span class="help-block"><?php echo $help_customer_group_display; ?></span>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_customer_group_display; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
                 <?php if ($error_customer_group_display) { ?>
                 <span class="error"><?php echo $error_customer_group_display; ?></span>
                 <?php } ?>
@@ -333,7 +353,9 @@
                   <?php echo $text_no; ?>
                   <?php } ?>
                 </label>
-                <span class="help-block"><?php echo $help_customer_price; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_customer_price; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-account"><?php echo $entry_account; ?></label>
@@ -348,7 +370,10 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_account; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_account; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <h2><?php echo $text_checkout; ?></h2>
             <div class="control-group">
@@ -395,7 +420,10 @@
                   <?php echo $text_no; ?>
                   <?php } ?>
                 </label>
-                <span class="help-block"><?php echo $help_guest_checkout; ?></span></div>
+
+                
+                <a data-toggle="tooltip" title="<?php echo $help_guest_checkout; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-checkout"><?php echo $entry_checkout; ?></label>
@@ -410,7 +438,11 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_checkout; ?></span></div>
+
+                
+                <a data-toggle="tooltip" title="<?php echo $help_checkout; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-order-status"><?php echo $entry_order_status; ?></label>
@@ -424,7 +456,10 @@
                   <?php } ?>
                   <?php } ?>
                 </select>
-                <span class="help-block"><?php echo $help_order_status; ?></span></div>
+                
+                <a data-toggle="tooltip" title="<?php echo $help_order_status; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <h2><?php echo $text_stock; ?></h2>
             <div class="control-group">
@@ -448,7 +483,10 @@
                   <?php echo $text_no; ?>
                   <?php } ?>
                 </label>
-                <span class="help-block"><?php echo $help_stock_display; ?></span></div>
+
+                <a data-toggle="tooltip" title="<?php echo $help_stock_display; ?>"><i class="icon-question-sign icon-large"></i></a>
+                
+                </div>
             </div>
             <div class="control-group">
               <div class="control-label"><?php echo $entry_stock_checkout; ?></div>
@@ -471,14 +509,17 @@
                   <?php echo $text_no; ?>
                   <?php } ?>
                 </label>
-                <span class="help-block"><?php echo $help_stock_checkout; ?></span></div>
+                <
+                
+                <a data-toggle="tooltip" title="<?php echo $help_stock_checkout; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
           </div>
           <div class="tab-pane" id="tab-image">
             <div class="control-group">
               <label class="control-label" for="input-logo"><?php echo $entry_logo; ?></label>
               <div class="controls">
-                <div class="image"><img src="<?php echo $logo; ?>" alt="" id="thumb-logo" />
+                <div class="image"><img src="<?php echo $logo; ?>" alt="" id="thumb-logo" class="img-polaroid" />
                   <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />
                   <br />
                   <a onclick="image_upload('logo', 'thumb-logo');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-logo').attr('src', '<?php echo $no_image; ?>'); $('#logo').attr('value', '');"><?php echo $text_clear; ?></a></div>
@@ -487,11 +528,14 @@
             <div class="control-group">
               <label class="control-label" for="input-icon"><?php echo $entry_icon; ?></label>
               <div class="controls">
-                <div class="image"><img src="<?php echo $icon; ?>" alt="" id="thumb-icon" />
+                <div class="image"><img src="<?php echo $icon; ?>" alt="" id="thumb-icon" class="img-polaroid" />
                   <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="input-icon" />
                   <br />
                   <a onclick="image_upload('icon', 'thumb-icon');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');"><?php echo $text_clear; ?></a></div>
-                <span class="help-block"><?php echo $help_icon; ?></span> </div>
+                
+                
+                <a data-toggle="tooltip" title="<?php echo $help_icon; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-image-category-width"><span class="required">*</span> <?php echo $entry_image_category; ?></label>
@@ -615,7 +659,10 @@
                   <?php echo $text_no; ?>
                   <?php } ?>
                 </label>
-                <span class="help-block"><?php echo $help_secure; ?></span></div>
+
+                
+                <a data-toggle="tooltip" title="<?php echo $help_secure; ?>"><i class="icon-question-sign icon-large"></i></a>
+                </div>
             </div>
           </div>
         </div>
@@ -624,7 +671,26 @@
   </div>
 </div>
 <script type="text/javascript"><!--
-$('#template').load('index.php?route=setting/store/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
+$('select[name=\'config_template\']').on('change', function() {
+	$.ajax({
+		url: 'index.php?route=setting/setting/template&token=<?php echo $token; ?>&template=' + encodeURIComponent(this.value),
+		dataType: 'html',
+		beforeSend: function() {
+			$('select[name=\'country_id\']').after(' <i class="icon-spinner icon-spin"></i>');
+		},		
+		complete: function() {
+			$('.icon-spinner').remove();
+		},			
+		success: function(html) {
+			$('#template').attr('src', html);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('select[name=\'config_template\']').trigger('change');
 //--></script> 
 <script type="text/javascript"><!--
 $('select[name=\'config_country_id\']').on('change', function() {
@@ -632,10 +698,10 @@ $('select[name=\'config_country_id\']').on('change', function() {
 		url: 'index.php?route=setting/store/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('select[name=\'country_id\']').after('<img src="view/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+			$('select[name=\'config_country_id\']').after(' <i class="icon-spinner icon-spin"></i>');
 		},		
 		complete: function() {
-			$('.loading').remove();
+			$('.icon-spinner').remove();
 		},			
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
