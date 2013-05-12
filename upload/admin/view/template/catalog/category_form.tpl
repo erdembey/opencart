@@ -11,7 +11,7 @@
   </div>
   <?php } ?>
   <div class="box">
-    <div class="page-header">
+    <div class="box-heading">
       <h1><i class="icon-edit"></i> <?php echo $heading_title; ?></h1>
     </div>
     <div class="box-content">
@@ -74,8 +74,8 @@
               <label class="control-label" for="input-filter"><?php echo $entry_filter; ?></label>
               <div class="controls">
                 <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" />
-                <a data-toggle="tooltip" title="<?php echo $help_filter; ?>"><i class="icon-question-sign icon-large"></i></a>
-                <br /><br />
+                <a data-toggle="tooltip" title="<?php echo $help_filter; ?>"><i class="icon-info-sign"></i></a> <br />
+                <br />
                 <div id="category-filter" class="well well-small scrollbox">
                   <?php foreach ($category_filters as $category_filter) { ?>
                   <div id="category-filter<?php echo $category_filter['filter_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $category_filter['name']; ?>
@@ -114,14 +114,14 @@
               <label class="control-label" for="input-keyword"><?php echo $entry_keyword; ?></label>
               <div class="controls">
                 <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" />
-                <a data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><i class="icon-question-sign icon-large"></i></a></div>
+                <a data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><i class="icon-info-sign"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-name"><?php echo $entry_image; ?></label>
               <div class="controls">
                 <ul class="thumbnails">
                   <li><a class="thumbnail" href="#"><img alt="" src="<?php echo $thumb; ?>"></a>
-                    <ul class="thumbnail-option inline">
+                    <ul class="thumbnail-option">
                       <li><a href="#" title="Edit"><span class="icon-edit"></span></a></li>
                       <li><a href="#" title="Delete"><span class="icon-trash"></span></a></li>
                     </ul>
@@ -144,13 +144,13 @@
                   <input type="checkbox" name="top" value="1" id="input-top" />
                   <?php } ?>
                 </label>
-                <a data-toggle="tooltip" data-original-title="<?php echo $help_top; ?>"><i class="icon-question-sign icon-large"></i></a></div>
+                <a data-toggle="tooltip" data-original-title="<?php echo $help_top; ?>"><i class="icon-info-sign"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-column"><?php echo $entry_column; ?></label>
               <div class="controls">
                 <input type="text" name="column" value="<?php echo $column; ?>" placeholder="<?php echo $entry_column; ?>" id="input-column" class="input-mini" />
-                <a data-toggle="tooltip" title="<?php echo $help_column; ?>"><i class="icon-question-sign icon-large"></i></a></div>
+                <a data-toggle="tooltip" title="<?php echo $help_column; ?>"><i class="icon-info-sign"></i></a></div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
@@ -195,9 +195,7 @@
                       <?php } ?>
                     </select></td>
                 </tr>
-              </tbody>
-              <?php foreach ($stores as $store) { ?>
-              <tbody>
+                <?php foreach ($stores as $store) { ?>
                 <tr>
                   <td class="left"><?php echo $store['name']; ?></td>
                   <td class="left"><select name="category_layout[<?php echo $store['store_id']; ?>][layout_id]">
@@ -211,8 +209,8 @@
                       <?php } ?>
                     </select></td>
                 </tr>
+                <?php } ?>
               </tbody>
-              <?php } ?>
             </table>
           </div>
         </div>
@@ -229,7 +227,7 @@
     <h3 id="modal-label"><?php echo $text_image_manager; ?></h3>
   </div>
   <div class="modal-body">
-    <iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="width: 90%; height: 90%;" frameborder="no" scrolling="auto"></iframe>
+    <iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>" style="width: 90%; height: 90%;" frameborder="no" scrolling="auto"></iframe>
   </div>
 </div>
 <script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script> 
