@@ -3,16 +3,16 @@ html, body, label, .control-group input, textarea, select {
 	font-size: 12px;
 	line-height: 15px;
 }
+
 .alert {
 	font-size: 14px;
 	line-height: 20px;
 }
+
 .btn-group .btn, .btn {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-
-
 
 .brand {
 	margin: 0px;
@@ -91,7 +91,6 @@ html, body, label, .control-group input, textarea, select {
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
 	border-bottom: 1px solid #CCCCCC;
-	min-height: 300px;
 	overflow: auto;
 }
 
@@ -166,7 +165,7 @@ html, body, label, .control-group input, textarea, select {
 }
 .table a.desc:after {
 	content: "  \f0d8";
-	font-family: FontAwesome;	
+	font-family: FontAwesome;
 	font-size: 14px;
 }
 .control-group {
@@ -180,12 +179,17 @@ html, body, label, .control-group input, textarea, select {
 	text-decoration: none;
 	margin-left: 5px;
 }
+/*
 .control-label:after {
 	content: ':';
 }
+*/
 .required .control-label:before {
 	content: '* ';
 	color: #B94A48;
+}
+.help-block {
+	color: #999;
 }
 .scrollbox {
 	width: 250px;
@@ -195,33 +199,42 @@ html, body, label, .control-group input, textarea, select {
 .results {
 	float: right;
 }
-
 .chart {
-	width: 30px; 
+	width: 30px;
 	height: 30px;
 	display: inline-block;
 	border: 1px solid #000;
 }
-
 .detail {
 	display: inline-block;
 	margin-left: 10px;
 	border: 1px solid #000;
 }
-
 /* thumbnails */
-.thumbnails {
+.image {
+	float: left;
 	position: relative;
-	border: 1px solid #000;
 }
-.thumbnail-option {
+.image .image-option {
+	background-color: #000000;
 	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	opacity: 0.8;
-	background: #000;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	opacity: 0;
+	text-align: center;
 }
-.thumbnail-option a {
+.image:hover .image-option {
+	opacity: 0.8;
+}
+.image-option a {
+	text-decoration: none;
 	color: #FFF;
+	font-size: 15px;
+	padding: 5px 8px;
+	display: inline-block;
+}
+.image-option a:hover {
+	background-color: #FFF;
+	color: #000000;
 }

@@ -31,8 +31,8 @@
             <div class="tab-content">
               <?php foreach ($languages as $language) { ?>
               <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
-                <div class="control-group error required">
-                  <label class="control-label" for="input-name<?php echo $language['language_id']; ?>"><span class="required">*</span> <?php echo $entry_name; ?></label>
+                <div class="control-group required">
+                  <label class="control-label" for="input-name<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
                   <div class="controls">
                     <input type="text" name="category_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name<?php echo $language['language_id']; ?>" class="input-xxlarge" />
                     <?php if (isset($error_name[$language['language_id']])) { ?>
@@ -74,8 +74,7 @@
               <label class="control-label" for="input-filter"><?php echo $entry_filter; ?></label>
               <div class="controls">
                 <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" />
-                <a data-toggle="tooltip" title="<?php echo $help_filter; ?>"><i class="icon-info-sign"></i></a> <br />
-                <br />
+                <a data-toggle="tooltip" title="<?php echo $help_filter; ?>"><i class="icon-info-sign"></i></a><br />
                 <div id="category-filter" class="well well-small scrollbox">
                   <?php foreach ($category_filters as $category_filter) { ?>
                   <div id="category-filter<?php echo $category_filter['filter_id']; ?>"><i class="icon-minus-sign"></i> <?php echo $category_filter['name']; ?>
@@ -111,27 +110,18 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="input-keyword"><?php echo $entry_keyword; ?></label>
+              <label class="control-label" for="input-keyword"><?php echo $entry_keyword; ?> </label>
               <div class="controls">
                 <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" />
-                <a data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><i class="icon-info-sign"></i></a></div>
+                <span class="help-block"><?php echo $help_keyword; ?></span> </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="input-name"><?php echo $entry_image; ?></label>
               <div class="controls">
-                <ul class="thumbnails">
-                  <li><a class="thumbnail" href="#"><img alt="" src="<?php echo $thumb; ?>"></a>
-                    <ul class="thumbnail-option">
-                      <li><a href="#" title="Edit"><span class="icon-edit"></span></a></li>
-                      <li><a href="#" title="Delete"><span class="icon-trash"></span></a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <div class="btn-group">
-                  <button data-toggle="modal" data-target="#modal" class="btn btn-small"><i class="icon-edit"></i></button>
-                  <button onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="btn btn-small"><i class="icon-remove"></i></button>
+                <div class="image"> <img src="<?php echo $thumb; ?>" alt="" class="img-polaroid" />
+                  <input type="hidden" name="image" value="<?php echo $image; ?>" />
+                  <div class="image-option"><a href="#" title="<?php echo $button_edit; ?>" data-toggle="modal" data-target="#modal"><span class="icon-pencil"></span></a> <a href="#" title="<?php echo $button_clear; ?>" onclick="$(this).parent().parent().find('img').attr('src', '<?php echo $no_image; ?>'); $(this).parent().parent().find('input').attr('value', ''); return false;"><span class="icon-trash"></span></a></div>
                 </div>
-                <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               </div>
             </div>
             <div class="control-group">
@@ -221,6 +211,7 @@
     </div>
   </div>
 </div>
+
 <div id="modal" style="width: 60%; height: 60%;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -230,6 +221,8 @@
     <iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>" style="width: 90%; height: 90%;" frameborder="no" scrolling="auto"></iframe>
   </div>
 </div>
+
+
 <script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script> 
 <script type="text/javascript"><!--
 <?php foreach ($languages as $language) { ?>
