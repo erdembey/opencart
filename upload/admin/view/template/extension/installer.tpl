@@ -19,8 +19,7 @@
         <label class="control-label" for="button-upload"><?php echo $entry_upload; ?></label>
         <div class="controls">
           <button type="button" id="button-upload" class="btn" onclick="$('input[name=\'file\']').click();"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
-          <a data-toggle="tooltip" title="<?php echo $help_upload; ?>"><i class="icon-info-sign"></i></a>
-        </div>
+          <a data-toggle="tooltip" title="<?php echo $help_upload; ?>"><i class="icon-info-sign"></i></a></div>
       </div>
       <div id="progress" class="control-group">
         <div class="control-label"><?php echo $entry_progress; ?></div>
@@ -120,7 +119,7 @@ function next() {
 			url: data.url,
 			type: 'post',		
 			dataType: 'json',
-			data: 'file=' + data.file,
+			data: 'path=' + data.path,
 			success: function(json) {
 				if (json['error']) {
 					$('#progress').addClass('error');
@@ -135,13 +134,9 @@ function next() {
 					$('#progress .progress').addClass('progress-success');
 					$('#progress .help-block').html(json['success']);
 				}				
-				
-				$('body').append(json);
 			},			
 			error: function(xhr, ajaxOptions, thrownError) {
-				$('#progress').addClass('error');
-				$('#progress .progress').addClass('progress-danger');
-				$('#progress .help-block').html(thrownError);			
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
 		});
 	}
