@@ -16,6 +16,7 @@ class ControllerExtensionInstaller extends Controller {
 		$this->data['help_upload'] = $this->language->get('help_upload');
 
 		$this->data['button_upload'] = $this->language->get('button_upload');
+		$this->data['button_clear'] = $this->language->get('button_clear');
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		
   		$this->data['breadcrumbs'] = array();
@@ -97,7 +98,7 @@ class ControllerExtensionInstaller extends Controller {
 					
 					// Clear temporary files
 					$json['step'][] = array(
-						'text' => $this->language->get('text_success'),
+						'text' => $this->language->get('text_clear'),
 						'url'  => str_replace('&amp;', '&', $this->url->link('extension/installer/clear', 'token=' . $this->session->data['token'], 'SSL')),
 						'path' => ''
 					);
@@ -191,7 +192,7 @@ class ControllerExtensionInstaller extends Controller {
 			
 						// Clear temporary files
 						$json['step'][] = array(
-							'text' => $this->language->get('text_success'),
+							'text' => $this->language->get('text_clear'),
 							'url'  => str_replace('&amp;', '&', $this->url->link('extension/installer/clear', 'token=' . $this->session->data['token'], 'SSL')),
 							'path' => ''
 						);	
@@ -342,12 +343,10 @@ class ControllerExtensionInstaller extends Controller {
 		}
 		
 		if (!$json) {
-		//	$sql = file_get_contents($file);
+			$lines = file($file);
 			
-		//	if ($sql) {
+			if ($lines) {
 				try {	
-					$lines = file($file);	
-					
 					$sql = '';
 					
 					foreach($lines as $line) {
@@ -355,11 +354,9 @@ class ControllerExtensionInstaller extends Controller {
 							$sql .= $line;
 		  
 							if (preg_match('/;\s*$/', $line)) {
-								$sql = str_replace("DROP TABLE IF EXISTS `oc_", "DROP TABLE IF EXISTS `" . $data['db_prefix'], $sql);
-								$sql = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . $data['db_prefix'], $sql);
-								$sql = str_replace("INSERT INTO `oc_", "INSERT INTO `" . $data['db_prefix'], $sql);
+								$sql = str_replace(" `oc_", " `" . DB_PREFIX, $sql);
 								
-								$db->query($sql);
+								$this->db->query($sql);
 			
 								$sql = '';
 							}
@@ -368,7 +365,7 @@ class ControllerExtensionInstaller extends Controller {
 				} catch(Exception $exception) {
 					$json['error'] = sprintf($this->language->get('error_exception'), $exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine());
 				}
-		//	}
+			}
 		}
 	
 		$this->response->setOutput(json_encode($json));							
@@ -491,6 +488,8 @@ class ControllerExtensionInstaller extends Controller {
 					rmdir($directory);
 				}
 			}
+			
+			$json['success'] = $this->language->get('text_success');
 		}
 		
 		$this->response->setOutput(json_encode($json));
