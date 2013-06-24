@@ -36,6 +36,7 @@ $_['text_localisation']                = 'Localisation';
 $_['text_location']                    = 'Store Location';
 $_['text_logout']                      = 'Logout';
 $_['text_contact']                     = 'Mail';
+$_['text_marketing']                   = 'Marketing';
 $_['text_modification']                = 'Modifications';
 $_['text_manufacturer']                = 'Manufacturers';
 $_['text_module']                      = 'Modules';

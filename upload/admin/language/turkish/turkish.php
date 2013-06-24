@@ -34,6 +34,7 @@ $_['button_insert']           		= 'Ekle';
 $_['button_delete']           		= 'Sil';
 $_['button_save']             		= 'Kaydet';
 $_['button_cancel']           		= 'İptal';
+$_['button_continue']               = 'Devam et';
 $_['button_clear']            		= 'Temizle';
 $_['button_close']            		= 'Kapat';
 $_['button_filter']           		= 'Süzgeç';

@@ -14,7 +14,7 @@
     <div class="box-heading">
       <h1><i class="icon-edit"></i> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <button type="submit" form="form-user" class="btn"><i class="icon-ok"></i> <?php echo $button_save; ?></button>
+        <button type="submit" form="form-user" class="btn btn-primary"><i class="icon-ok"></i> <?php echo $button_save; ?></button>
         <a href="<?php echo $cancel; ?>" class="btn"><i class="icon-remove"></i> <?php echo $button_cancel; ?></a></div>
     </div>
     <div class="box-content">
@@ -26,6 +26,20 @@
             <?php if ($error_username) { ?>
             <span class="error"><?php echo $error_username; ?></span>
             <?php } ?>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="input-user-group"><?php echo $entry_user_group; ?></label>
+          <div class="controls">
+            <select name="user_group_id" id="input-user-group">
+              <?php foreach ($user_groups as $user_group) { ?>
+              <?php if ($user_group['user_group_id'] == $user_group_id) { ?>
+              <option value="<?php echo $user_group['user_group_id']; ?>" selected="selected"><?php echo $user_group['name']; ?></option>
+              <?php } else { ?>
+              <option value="<?php echo $user_group['user_group_id']; ?>"><?php echo $user_group['name']; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
           </div>
         </div>
         <div class="control-group">
@@ -53,17 +67,12 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="input-user-group"><?php echo $entry_user_group; ?></label>
+          <label class="control-label" for="input-name"><?php echo $entry_image; ?></label>
           <div class="controls">
-            <select name="user_group_id" id="input-user-group">
-              <?php foreach ($user_groups as $user_group) { ?>
-              <?php if ($user_group['user_group_id'] == $user_group_id) { ?>
-              <option value="<?php echo $user_group['user_group_id']; ?>" selected="selected"><?php echo $user_group['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $user_group['user_group_id']; ?>"><?php echo $user_group['name']; ?></option>
-              <?php } ?>
-              <?php } ?>
-            </select>
+            <div class="image"> <img src="<?php echo $thumb; ?>" alt="" class="img-polaroid" />
+              <input type="hidden" name="image" value="<?php echo $image; ?>" />
+              <div class="image-option"><a href="#" title="<?php echo $button_edit; ?>" data-toggle="modal" data-target="#modal"><span class="icon-pencil"></span></a> <a href="#" title="<?php echo $button_clear; ?>" onclick="$(this).parent().parent().find('img').attr('src', '<?php echo $no_image; ?>'); $(this).parent().parent().find('input').attr('value', ''); return false;"><span class="icon-trash"></span></a></div>
+            </div>
           </div>
         </div>
         <div class="control-group">
@@ -102,4 +111,31 @@
     </div>
   </div>
 </div>
+<script type="text/javascript"><!--
+function image_upload(field, thumb) {
+	$('#dialog').remove();
+	
+	$('#content').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	
+	$('#dialog').dialog({
+		title: '<?php echo $text_image_manager; ?>',
+		close: function (event, ui) {
+			if ($('#' + field).attr('value')) {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+					dataType: 'text',
+					success: function(data) {
+						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
+					}
+				});
+			}
+		},	
+		bgiframe: false,
+		width: 800,
+		height: 400,
+		resizable: false,
+		modal: false
+	});
+};
+//--></script> 
 <?php echo $footer; ?> 
