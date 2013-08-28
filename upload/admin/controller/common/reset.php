@@ -4,7 +4,7 @@ class ControllerCommonReset extends Controller {
 	
 	public function index() {
 		if ($this->user->isLogged()) {
-			$this->redirect($this->url->link('common/home', '', 'SSL'));
+			$this->redirect($this->url->link('common/dashboard', '', 'SSL'));
 		}
 				
 		if (!$this->config->get('config_password')) {
@@ -36,7 +36,7 @@ class ControllerCommonReset extends Controller {
 	
 			$this->data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_home'),
-				'href' => $this->url->link('common/home')
+				'href' => $this->url->link('common/dashboard')
 			); 
 			
 			$this->data['breadcrumbs'][] = array(
@@ -90,6 +90,8 @@ class ControllerCommonReset extends Controller {
 									
 			$this->response->setOutput($this->render());						
 		} else {
+			$this->load->model('setting/setting');
+			
 			$this->model_setting_setting->editSettingValue('config', 'config_password', '0');
 			
 			return $this->forward('common/login');

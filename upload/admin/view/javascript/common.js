@@ -26,7 +26,7 @@ $(document).ready(function() {
 	route = getURLVar('route');
 	
 	if (!route) {
-		$('#header #dashboard a').addClass('active');
+		$('#menu #dashboard').addClass('active');
 	} else {
 		part = route.split('/');
 		
@@ -36,16 +36,14 @@ $(document).ready(function() {
 			url += '/' + part[1];
 		}
 		
-		$('#header a[href*=\'' + url + '\']').parents('li[id]').addClass('active');
+		$('#menu a[href*=\'' + url + '\']').parents('li[id]').addClass('active');
 	}
 	
-	$('[data-toggle=\'tooltip\']').tooltip({
-		'placement': 'top',
-		'animation': false,
-		'html': true
-	});
+	$('[data-toggle=\'tooltip\']').tooltip();
 });
 
+
+/*
 $('[data-target=]').on('submit', function(event) {
 	event.preventDefault();
 	
@@ -69,7 +67,7 @@ $('[data-target=]').on('submit', function(event) {
 						
 			if (json['error']) {
 				if (json['error']['warning']) {
-					$('.box').before('<div class="alert alert-error">' + json['error']['warning'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$('.box').before('<div class="alert alert-danger"><i class="icon-exclamation-sign"></i> ' + json['error']['warning'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 				}
 				
 				for (i in json['error']) {
@@ -80,7 +78,7 @@ $('[data-target=]').on('submit', function(event) {
 			}
 						
 			if (json['success']) {
-				$('.box').before('<div class="alert alert-success">' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+				$('.box').before('<div class="alert alert-success"><i class="icon-ok-sign"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
@@ -88,7 +86,7 @@ $('[data-target=]').on('submit', function(event) {
 		}
 	});
 });
-
+*/
 // Added my own autocomplete method for jquery since bootstraps is pretty much useless	
 (function($) {
 	function Autocomplete(element, options) {
@@ -184,7 +182,7 @@ $('[data-target=]').on('submit', function(event) {
 				}
 				
 				for (i in category) {
-					html += '<li class="disabled"><a href="#"><b>' + category[i]['name'] + '</b></a></li>';
+					html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
 					
 					for (j = 0; j < category[i]['item'].length; j++) {
 						html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';

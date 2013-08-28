@@ -2,11 +2,11 @@
 /* Turkceye Ceviren eka7a - http://www.e-piksel.com */
 
 // Heading
-$_['heading_title']					 = 'PayPal Website Payments Standart';
+$_['heading_title']					 = 'PayPal Payments Standard';
 
 // Text
 $_['text_payment']					 = 'Ödeme Metodları';
-$_['text_success']					 = 'Başarılı: PayPal hesap detayları başarılı bir şekilde değiştirildi!';
+$_['text_success']					 = 'Başarılı: PayPal Payments Standard hesap detayları başarılı bir şekilde değiştirildi!';
 $_['text_pp_standard']				 = '<a href="https://www.paypal.com/tr/mrb/pal=YS4L83BNSEC6A" target="_blank"><img src="view/image/payment/paypal.png" alt="PayPal" title="PayPal" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_authorization']			 = 'Onaylı Ödeme';
 $_['text_sale']						 = 'Direk Ödeme';
@@ -36,6 +36,6 @@ $_['help_debug']					 = 'Sistem kayıtlarına hata bilgilerini ekler.';
 $_['help_total']					 = 'Bu ödeme metodunun aktif olması için toplam sipariş miktarını giriniz.';
 
 // Error
-$_['error_permission']				 = 'Uyarı: PayPal ödeme metodunu düzenleme iznine sahip değilsiniz!';
+$_['error_permission']				 = 'Uyarı: PayPal Payments Standard ödeme metodunu düzenleme iznine sahip değilsiniz!';
 $_['error_email']					 = 'E-Posta Gerekli!'; 
 ?>

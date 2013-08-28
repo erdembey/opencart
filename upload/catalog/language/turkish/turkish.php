@@ -18,6 +18,7 @@ $_['text_none']             = ' --- Yok --- ';
 $_['text_select']           = ' --- Seçiniz --- ';
 $_['text_all_zones']        = 'Tüm Şehirler';
 $_['text_pagination']       = 'Gösterilen: {start} ile {end} arası, toplam: {total} ({pages} Sayfa)';
+$_['text_loading']          = 'Yükleniyor...';
 $_['text_separator']        = ' &raquo; ';
 
 // Buttons
@@ -54,7 +55,7 @@ $_['button_reward']         = 'Puanı Kullan';
 $_['button_quote']          = 'Kargo Seçeneklerini Göster';
 
 // Error
-$_['error_exception']       = 'Hata Kodu(%s): %s in %s on line %s';
+$_['error_exception']       = 'Hata Kodu(%s): %s dosya %s satır %s';
 $_['error_upload_1']        = 'Uyarı: Karşıya yüklenen dosya çok büyük - php.ini dosyasındaki upload_max_filesize değerini değiştirin!';
 $_['error_upload_2']        = 'Uyarı: Karşıya yüklenen dosya HTML formundaki MAX_FILE_SIZE değerinden çok büyük';
 $_['error_upload_3']        = 'Uyarı: Karşıya yüklenen dosya sadece kısmi olarak yüklendi!';

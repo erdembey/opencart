@@ -4,63 +4,76 @@
 <meta charset="UTF-8" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
-<script type="text/javascript" src="//code.jquery.com/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
 <link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
-<link href="view/javascript/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 <script src="view/javascript/bootstrap/js/bootstrap.js"></script>
 <link rel="stylesheet" href="view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <style type="text/css">
-#directory, ul {
-	list-style: none;	
+html, body, label, input, textarea, select, td {
+	font-size: 12px;
 }
 </style>
 </head>
 <body>
-<div class="container-fluid">
-<div id="menu">
+<div class="btn-toolbar">
+  <button id="button-create" class="btn btn-default"><i class="icon-folder-close"></i> <?php echo $button_folder; ?></button>
+  <button id="button-upload" class="btn btn-default"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
+  <button id="button-refresh" class="btn btn-default"><i class="icon-refresh"></i> <?php echo $button_refresh; ?></button>
+</div>
+<div class="col-6">
   <div class="row">
-    <div class="span3">
-      <div class="well well-small">
-        <ul id="directory">
-          <li><a href="#"><i class="icon-folder-close"></i> Image <i class="icon-edit pull-right"></i> <i class="icon-remove pull-right"></i></a></li>
-        </ul>
-      </div>
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li><a href=""><i class="icon-folder-close icon-large"></i> test</a></li>
+      </ul>
+      <div class="list-group"> <a class="list-group-item">test</a> <a class="list-group-item">test</a> <a class="list-group-item">test</a> </div>
     </div>
-    <div class="span9">
-      <div class="well well-small">
-        <ul id="files" class="thumbnails">
-        </ul>
-      </div>
+    <div class="col-sm-9">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <td class="text-center"><input type="checkbox" name="" value="" /></td>
+            <td>Name</td>
+            <td>Size</td>
+            <td>Type</td>
+            <td>Date Modified</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center"><input type="checkbox" name="" value="" /></td>
+            <td>Test</td>
+            <td>13kb</td>
+            <td>jPeg</td>
+            <td>1/2/1999</td>
+            <td><a href="#" title="<?php echo $button_move; ?>" class="btn btn-primary"><i class="icon-remove-sign"></i></a>
+              <button type="button" title="<?php echo $button_rename; ?>" class="btn btn-default"><i class="icon-edit"></i></button>
+              <button type="button" title="<?php echo $button_delete; ?>" class="btn btn-default"><i class="icon-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="pagination">
+        <li><a>1</a></li>
+      </ul>
     </div>
   </div>
-  
-    <button id="button-create" class="btn"><i class="icon-folder-close"></i> <?php echo $button_folder; ?></button>
-    <button id="button-delete" class="btn"><i class="icon-trash"></i> <?php echo $button_delete; ?></button>
-    <button id="button-upload" class="btn"><i class="icon-upload"></i> <?php echo $button_upload; ?></button>
-    <button id="button-refresh" class="btn"><i class="icon-refresh"></i> <?php echo $button_refresh; ?></button>
-    <div class="btn-group">
-    <button id="button-move" class="btn"><i class="icon-remove-sign"></i> <?php echo $button_move; ?></button>
-    <button id="button-copy" class="btn"><i class="icon-copy"></i> <?php echo $button_copy; ?></button>
-    <button id="button-rename" class="btn"><i class="icon-edit"></i> <?php echo $button_rename; ?></button>
-   </div>
-
-  
 </div>
-<div id="upload">
+<div id="upload" style="display: none;">
   <form enctype="multipart/form-data">
     <input type="file" name="image" id="image" />
     <input type="hidden" name="directory" />
   </form>
 </div>
 <script type="text/javascript"><!--
-$('#directory').delegate('a .icon-folder-close', 'click', function(e) {
-	event.preventDefault();
-
+$('#directory').delegate('a', 'click', function(e) {
+	e.preventDefault();
+	
 	var node = this;
 	
 	$('#directory li').removeClass('active');
 	
-	$(node).parent().parent().addClass('active');
+	$(node).parent().addClass('active');
 	
 	if ($(this).find('> .icon-folder-close').hasClass('icon-folder-close')) {
 		$.ajax({
@@ -76,13 +89,14 @@ $('#directory').delegate('a .icon-folder-close', 'click', function(e) {
 			},
 			success: function(json) {
 				$(node).find('> .icon-folder-close').attr('class', 'icon-folder-open');
+				
 				$(node).parent().find('ul').remove();
 				
 				if (json) {
 					html = '<ul>';
 					
 					for (i = 0; i < json.length; i++) {
-						html += '<li><a href="' + json[i]['directory'] + '"><i class="icon-folder-close"></i> ' + json[i]['name'] + '</a> </li>';
+						html += '<li><a href="' + json[i]['directory'] + '"><i class="icon-folder-close"></i> ' + json[i]['name'] + '</a></li>';
 					}
 					
 					html += '</ul>';
@@ -99,7 +113,6 @@ $('#directory').delegate('a .icon-folder-close', 'click', function(e) {
 		$(node).parent().find('ul').remove();
 	}
 });
-
 
 
 /*

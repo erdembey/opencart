@@ -1,6 +1,6 @@
 <div class="buttons">
-  <div class="right">
-    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="btn" />
+  <div class="pull-right">
+    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="btn btn-primary" />
   </div>
 </div>
 <script type="text/javascript"><!--
@@ -9,10 +9,12 @@ $('#button-confirm').on('click', function() {
 		type: 'get',
 		url: 'index.php?route=payment/cod/confirm',
 		beforeSend: function() {
-			$('#button-confirm').attr('disabled', true);
-			$('#button-confirm').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
-		},	
-		success: function() {			
+			$('#button-confirm').button('loading');
+		},
+		complete: function() {
+			$('#button-confirm').button('reset');
+		},		
+		success: function() {
 			location = '<?php echo $continue; ?>';
 		}		
 	});

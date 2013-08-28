@@ -24,6 +24,9 @@ $_['text_empty']         = 'Daha önce ürün iade isteğinde bulunmadınız!';
 $_['text_agree']		 = '<a class="colorbox" href="%s" alt="%s"><b>%s</b></a>\'nı okudum ve kabul ediyorum.';
 
 // Column
+$_['column_return_id']   = 'İade No';
+$_['column_order_id']    = 'Sipariş No';
+$_['column_customer']    = 'Müşteri';
 $_['column_product']     = 'Ürün Adı';
 $_['column_model']       = 'Ürün Kodu';
 $_['column_quantity']    = 'Miktar';
