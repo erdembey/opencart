@@ -274,10 +274,13 @@ class ControllerLocalisationLocation extends Controller {
 		
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
+		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_geocode'] = $this->language->get('text_geocode'); 
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
-				
-		$this->data['entry_name'] = $this->language->get('entry_name');
+		
+		$this->data['entry_name'] = $this->language->get('entry_name');		
+		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
+		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
 		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
 		$this->data['entry_city'] = $this->language->get('entry_city');
@@ -311,6 +314,12 @@ class ControllerLocalisationLocation extends Controller {
 			$this->data['error_name'] = '';
 		}
 		
+		if (isset($this->error['telephone'])) {
+			$this->data['error_telephone'] = $this->error['telephone'];
+		} else {
+			$this->data['error_telephone'] = '';
+		}
+				
 		if (isset($this->error['address_1'])) {
 			$this->data['error_address_1'] = $this->error['address_1'];
 		} else {
@@ -340,12 +349,6 @@ class ControllerLocalisationLocation extends Controller {
 		} else {
 			$this->data['error_zone'] = '';
 		}
-				
-		if (isset($this->error['geocode'])) {
-			$this->data['error_geocode'] = $this->error['geocode'];
-		} else {
-			$this->data['error_geocode'] = '';
-		} 
 		                
 		$url = '';
 		
@@ -386,6 +389,8 @@ class ControllerLocalisationLocation extends Controller {
 		}
 		
 		$this->data['token'] = $this->session->data['token'];  
+
+		$this->load->model('setting/store');
 		
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
@@ -395,6 +400,22 @@ class ControllerLocalisationLocation extends Controller {
 			$this->data['name'] =   '';
 		}
 		
+		if (isset($this->request->post['telephone'])) {
+			$this->data['telephone'] = $this->request->post['telephone'];
+		} elseif (!empty($location_info)) {
+			$this->data['telephone'] = $location_info['telephone'];
+		} else {
+			$this->data['telephone'] = '';
+		}
+		
+		if (isset($this->request->post['fax'])) {
+			$this->data['fax'] = $this->request->post['fax'];
+		} elseif (!empty($location_info)) {
+			$this->data['fax'] = $location_info['fax'];
+		} else {
+			$this->data['fax'] = '';
+		}
+				
 		if (isset($this->request->post['address_1'])) {
 			$this->data['address_1'] = $this->request->post['address_1'];
 		} elseif (!empty($location_info)) {
@@ -454,7 +475,7 @@ class ControllerLocalisationLocation extends Controller {
 		} else {
 			$this->data['geocode'] = '';
 		}
-		
+						
 		if (isset($this->request->post['image'])) {
 			$this->data['image'] = $this->request->post['image'];
 		} elseif (!empty($location_info)) {
@@ -465,9 +486,9 @@ class ControllerLocalisationLocation extends Controller {
 		
 		$this->load->model('tool/image');
 
-		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
 			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-		} elseif (!empty($location_info) && $location_info['image'] && file_exists(DIR_IMAGE . $location_info['image'])) {
+		} elseif (!empty($location_info) && $location_info['image'] && is_file(DIR_IMAGE . $location_info['image'])) {
 			$this->data['thumb'] = $this->model_tool_image->resize($location_info['image'], 100, 100);
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
@@ -478,9 +499,9 @@ class ControllerLocalisationLocation extends Controller {
 		if (isset($this->request->post['open'])) {
 			$this->data['open'] = $this->request->post['open'];
 		} elseif (!empty($location_info)) {
-			$this->data['open']  =   $location_info['open'];        
+			$this->data['open'] = $location_info['open'];        
 		} else {
-			$this->data['open']    =   '';
+			$this->data['open'] = '';
 		}
 		
 		if (isset($this->request->post['comment'])) {
@@ -508,7 +529,11 @@ class ControllerLocalisationLocation extends Controller {
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
-		
+
+    	if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+      		$this->error['telephone'] = $this->language->get('error_telephone');
+    	}
+				
 		if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
 			$this->error['address_1'] = $this->language->get('error_address_1');
 		}
@@ -521,7 +546,7 @@ class ControllerLocalisationLocation extends Controller {
 		
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 		
-		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2) || (utf8_strlen($this->request->post['postcode']) > 10)) {
+		if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['postcode']) < 2 || utf8_strlen($this->request->post['postcode']) > 10)) {
 			$this->error['postcode'] = $this->language->get('error_postcode');
 		}
 		
@@ -532,11 +557,7 @@ class ControllerLocalisationLocation extends Controller {
     	if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
       		$this->error['zone'] = $this->language->get('error_zone');
     	}
-				
-		if (!$this->request->post['geocode']) {
-			$this->error['geocode'] = $this->language->get('error_geocode');
-		}
-		
+
 		if (!$this->error) {
 			return true;
 		} else {

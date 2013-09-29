@@ -90,7 +90,7 @@ class ControllerProductCategory extends Controller {
 		$category_info = $this->model_catalog_category->getCategory($category_id);
 
 		if ($category_info) {
-	  		$this->document->setTitle($category_info['name']);
+	  		$this->document->setTitle($category_info['meta_title']);
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
 			$this->document->addLink($this->url->link('product/category', 'path=' . $this->request->get['path']), 'canonical');
@@ -108,9 +108,6 @@ class ControllerProductCategory extends Controller {
 			$this->data['text_tax'] = $this->language->get('text_tax');
 			$this->data['text_points'] = $this->language->get('text_points');
 			$this->data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
-			$this->data['text_display'] = $this->language->get('text_display');
-			$this->data['text_list'] = $this->language->get('text_list');
-			$this->data['text_grid'] = $this->language->get('text_grid');
 			$this->data['text_sort'] = $this->language->get('text_sort');
 			$this->data['text_limit'] = $this->language->get('text_limit');
 
@@ -336,11 +333,11 @@ class ControllerProductCategory extends Controller {
 
 			sort($limits);
 
-			foreach($limits as $limits){
+			foreach($limits as $value) {
 				$this->data['limits'][] = array(
-					'text'  => $limits,
-					'value' => $limits,
-					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $limits)
+					'text'  => $value,
+					'value' => $value,
+					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
 				);
 			}
 

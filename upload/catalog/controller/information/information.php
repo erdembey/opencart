@@ -21,7 +21,9 @@ class ControllerInformationInformation extends Controller {
 		$information_info = $this->model_catalog_information->getInformation($information_id);
    		
 		if ($information_info) {
-	  		$this->document->setTitle($information_info['title']); 
+	  		$this->document->setTitle($information_info['meta_title']); 
+			$this->document->setDescription($information_info['meta_description']);
+			$this->document->setKeywords($information_info['meta_keyword']);
 
       		$this->data['breadcrumbs'][] = array(
         		'text' => $information_info['title'],
@@ -96,23 +98,15 @@ class ControllerInformationInformation extends Controller {
 			$information_id = 0;
 		}      
 		
+		$output = '';
+		
 		$information_info = $this->model_catalog_information->getInformation($information_id);
 
 		if ($information_info) {
-			$output  = '<html dir="ltr" lang="en">' . "\n";
-			$output .= '<head>' . "\n";
-			$output .= '  <title>' . $information_info['title'] . '</title>' . "\n";
-			$output .= '  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";
-			$output .= '  <meta name="robots" content="noindex">' . "\n";
-			$output .= '</head>' . "\n";
-			$output .= '<body>' . "\n";
-			$output .= '  <h1>' . $information_info['title'] . '</h1>' . "\n";
 			$output .= html_entity_decode($information_info['description'], ENT_QUOTES, 'UTF-8') . "\n";
-			$output .= '  </body>' . "\n";
-			$output .= '</html>' . "\n";			
-
-			$this->response->setOutput($output);
 		}
+		
+		$this->response->setOutput($output);
 	}
 }
 ?>

@@ -19,8 +19,8 @@ class ControllerInformationContact extends Controller {
 			$mail->setTo($this->config->get('config_email'));
 	  		$mail->setFrom($this->request->post['email']);
 	  		$mail->setSender($this->request->post['name']);
-	  		$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-	  		$mail->setText(strip_tags(html_entity_decode($this->request->post['enquiry'], ENT_QUOTES, 'UTF-8')));
+	  		$mail->setSubject(sprintf($this->language->get('email_subject'), $this->request->post['name']));
+	  		$mail->setText(strip_tags($this->request->post['enquiry']));
       		$mail->send();
 
 	  		$this->redirect($this->url->link('information/contact/success'));
@@ -45,12 +45,15 @@ class ControllerInformationContact extends Controller {
 		$this->data['text_address'] = $this->language->get('text_address');
     	$this->data['text_telephone'] = $this->language->get('text_telephone');
     	$this->data['text_fax'] = $this->language->get('text_fax');
-        $this->data['text_open']= $this->language->get('text_open');
+        $this->data['text_open'] = $this->language->get('text_open');
+		$this->data['text_comment'] = $this->language->get('text_comment');
 
     	$this->data['entry_name'] = $this->language->get('entry_name');
     	$this->data['entry_email'] = $this->language->get('entry_email');
     	$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
+
+		$this->data['button_map'] = $this->language->get('button_map');
 
 		if (isset($this->error['name'])) {
     		$this->data['error_name'] = $this->error['name'];
@@ -80,11 +83,124 @@ class ControllerInformationContact extends Controller {
     
 		$this->data['action'] = $this->url->link('information/contact');
 		
-		$this->data['store'] = $this->config->get('config_name');
-    	$this->data['address'] = nl2br($this->config->get('config_address'));
-    	$this->data['telephone'] = $this->config->get('config_telephone');
-    	$this->data['fax'] = $this->config->get('config_fax');
-    	
+        $this->data['locations'] = array();
+		
+		$this->load->model('localisation/location');
+		
+		$this->load->model('tool/image');
+		
+		$this->data['location_id'] = $this->config->get('config_location_id');
+        
+		$location_info = $this->model_localisation_location->getLocation($this->config->get('config_location_id'));
+		
+		if ($location_info) {
+			if ($location_info['address_format']) {
+				$format = $location_info['address_format'];
+			} else {
+				$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+			}			
+			
+			$find = array(
+				'{firstname}',
+				'{lastname}',
+				'{company}',
+				'{address_1}',
+				'{address_2}',
+				'{city}',
+				'{postcode}',
+				'{zone}',
+				'{zone_code}',
+				'{country}'
+			);
+	
+			$replace = array(
+				'firstname' => '',
+				'lastname'  => '',		
+				'company'   => '',				
+				'address_1' => $location_info['address_1'],
+				'address_2' => $location_info['address_2'],
+				'city'      => $location_info['city'],
+				'postcode'  => $location_info['postcode'],
+				'zone'      => $location_info['zone'],
+				'zone_code' => $location_info['zone_code'],
+				'country'   => $location_info['country']  
+			);				
+			
+			if ($location_info['image']) {
+				$image = $this->model_tool_image->resize($location_info['image'], $this->config->get('config_image_location_width'), $this->config->get('config_image_location_height'));
+			} else {
+				$image = false;
+			}
+							
+			$this->data['locations'][] = array(
+				'location_id' => $location_info['location_id'],
+				'name'        => $location_info['name'],
+				'address'     => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format)))),
+				'geocode'     => $location_info['geocode'],
+				'telephone'   => $location_info['telephone'],
+				'fax'         => $location_info['fax'],
+				'image'       => $image,  
+				'open'        => $location_info['open'],   
+				'comment'     => $location_info['comment']   
+			);		
+		}
+		
+		$results = $this->model_localisation_location->getLocations();
+		
+        foreach($results as $result) {
+			if ($this->config->get('config_location_id') != $result['location_id'] && in_array($result['location_id'], (array)$this->config->get('config_location'))) {
+				if ($result['address_format']) {
+					$format = $result['address_format'];
+				} else {
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+							
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+		
+				$replace = array(
+					'firstname' => '',
+					'lastname'  => '',		
+					'company'   => '',				
+					'address_1' => $result['address_1'],
+					'address_2' => $result['address_2'],
+					'city'      => $result['city'],
+					'postcode'  => $result['postcode'],
+					'zone'      => $result['zone'],
+					'zone_code' => $result['zone_code'],
+					'country'   => $result['country']  
+				);				
+
+				if ($result['image']) {
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_location_width'), $this->config->get('config_image_location_height'));
+				} else {
+					$image = false;
+				}
+								
+				$this->data['locations'][] = array(
+					'location_id' => $result['location_id'],
+					'name'        => $result['name'],
+					'address'     => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format)))),
+					'geocode'     => $result['geocode'],
+					'telephone'   => $result['telephone'],
+					'fax'         => $result['fax'],
+					'image'       => $image,  
+					'open'        => $result['open'],   
+					'comment'     => $result['comment']   
+				);
+			}
+        }
+		
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
 		} else {
@@ -109,26 +225,6 @@ class ControllerInformationContact extends Controller {
 			$this->data['captcha'] = '';
 		}		
 
-        $this->data['locations'] = array();
-        
-        $this->load->model('setting/location');
-        
-		$results = $this->model_setting_location->getLocations();
-        
-        foreach($results as $result) {
-             $this->data['locations'][] = array(
-                  'location_id' => $result['location_id'],
-                  'name'        => $result['name'],
-                  'address_1'   => $result['address_1'],
-                  'address_2'   => $result['address_2'],
-                  'city'        => $result['city'],
-                  'postcode'    => $result['postcode'],   
-                  'geocode'     => $result['geocode'],
-				  'open'        => $result['open'],   
-                  'comment'     => $result['comment']   
-             );
-        }        
-        
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/contact.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/information/contact.tpl';
 		} else {
@@ -166,7 +262,7 @@ class ControllerInformationContact extends Controller {
 		
     	$this->data['heading_title'] = $this->language->get('heading_title');
 
-    	$this->data['text_message'] = $this->language->get('text_message');
+    	$this->data['text_message'] = $this->language->get('text_success');
 
     	$this->data['button_continue'] = $this->language->get('button_continue');
 

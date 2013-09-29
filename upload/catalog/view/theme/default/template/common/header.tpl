@@ -28,9 +28,7 @@
 <link href="catalog/view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<!--[if IE]>
 <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
-<![endif]-->
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
@@ -44,21 +42,13 @@
 <?php echo $google_analytics; ?>
 </head>
 <body>
-<div class="container">
-  <nav class="topbar navbar navbar-static-top">
-    <ul class="nav navbar-nav">
-      <li><?php echo $currency; ?></li>
-      <li><?php echo $language; ?></li>
-    </ul>
-    <ul class="nav navbar-nav pull-right">
-      <li><a href="tel:<?php echo $telephone; ?>"><i class="icon-phone"></i> <span class="hidden-phone hidden-tablet"><?php echo $telephone; ?></span></a></li>
-      <li><a href="<?php echo $account; ?>"><i class="icon-user"></i> <span class="hidden-phone hidden-tablet"><?php echo $text_account; ?></span></a></li>
-      <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"> <i class="icon-heart"></i> <span class="hidden-phone hidden-tablet"><?php echo $text_wishlist; ?></span></a></li>
-      <li><a href="<?php echo $shopping_cart; ?>"><i class="icon-shopping-cart"></i> <span class="hidden-phone hidden-tablet"><?php echo $text_shopping_cart; ?></span></a></li>
-      <li><a href="<?php echo $checkout; ?>"> <i class="icon-share-alt"></i> <span class="hidden-phone hidden-tablet"><?php echo $text_checkout; ?></span></a></li>
-    </ul>
-  </nav>
-</div>
+<nav>
+  <div class="container">
+    <div class="pull-left"><?php echo $currency; ?></div>
+    <div class="pull-left"><?php echo $language; ?></div>
+    <div class="pull-right"><a href="tel:<?php echo $telephone; ?>"><i class="icon-phone"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></a> <a href="<?php echo $account; ?>"><i class="icon-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span></a> <a href="<?php echo $wishlist; ?>" id="wishlist-total"><i class="icon-heart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_wishlist; ?></span></a> <a href="<?php echo $shopping_cart; ?>"><i class="icon-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span></a> <a href="<?php echo $checkout; ?>"><i class="icon-share-alt"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a> </div>
+  </div>
+</nav>
 <header>
   <div class="container">
     <div class="row">
@@ -73,10 +63,10 @@
       </div>
       <div class="col-sm-5">
         <div id="search" class="input-group">
-          <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" class="form-control" />
+          <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" class="form-control input-lg" />
           <span class="input-group-btn">
-          <button type="button" class="btn btn-default"><i class="icon-search"></i></button>
-          </span></div>
+          <button type="button" class="btn btn-default btn-lg"><i class="icon-search"></i></button>
+          </span> </div>
       </div>
       <div class="col-sm-3"><?php echo $cart; ?></div>
     </div>
@@ -84,9 +74,8 @@
 </header>
 <?php if ($categories) { ?>
 <div class="container">
-  <nav class="main-navbar navbar navbar-inverse">
-    <div class="navbar-header">
-    <span class="visible-xs"><?php echo $text_category; ?></span>
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header"><span class="visible-xs"><?php echo $text_category; ?></span>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -95,18 +84,16 @@
         <?php if ($category['children']) { ?>
         <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category['name']; ?></a>
           <div class="dropdown-menu">
-            <div class="dropdown-inner">
-              <?php for ($i = 0; $i < count($category['children']);) { ?>
-              <ul class="list-unstyled">
-                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-                <?php for (; $i < $j; $i++) { ?>
-                <?php if (isset($category['children'][$i])) { ?>
-                <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
-                <?php } ?>
-                <?php } ?>
-              </ul>
+            <?php for ($i = 0; $i < count($category['children']);) { ?>
+            <ul class="list-unstyled">
+              <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+              <?php for (; $i < $j; $i++) { ?>
+              <?php if (isset($category['children'][$i])) { ?>
+              <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
               <?php } ?>
-            </div>
+              <?php } ?>
+            </ul>
+            <?php } ?>
             <a href="<?php echo $category['href']; ?>" class="see-all"><?php echo $text_all; ?> <?php echo $category['name']; ?></a></div>
         </li>
         <?php } else { ?>

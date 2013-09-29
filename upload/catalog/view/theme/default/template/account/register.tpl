@@ -9,7 +9,14 @@
   <div class="alert alert-danger"><?php echo $error_warning; ?></div>
   <?php } ?>
   <div class="row"><?php echo $column_left; ?>
-    <div id="content" class="col-sm-9"><?php echo $content_top; ?>
+    <?php if ($column_left && $column_right) { ?>
+    <?php $cols = 6; ?>
+    <?php } elseif ($column_left || $column_right) { ?>
+    <?php $cols = 9; ?>
+    <?php } else { ?>
+    <?php $cols = 12; ?>
+    <?php } ?>  
+    <div id="content" class="col-sm-<?php echo $cols; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <p><?php echo $text_account_already; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -269,17 +276,5 @@ $('select[name=\'country_id\']').bind('change', function() {
 });
 
 $('select[name=\'country_id\']').trigger('change');
-//--></script> 
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.agree').magnificPopup({
-		delegate: 'li a', // child items selector, by clicking on it popup will open
-		type: 'image',
-		gallery: {
-			enabled: true
-		}
-		// other options
-	});
-});
-//--></script> 
+//--></script>
 <?php echo $footer; ?>
