@@ -78,14 +78,15 @@ $(document).ready(function() {
 	
 	// change product-grid to product-list
 	$('#list-view').click(function() {
-	$('.product-grid').removeClass('product-grid').addClass('product-list');
-	$('.product-thumb').addClass('clearfix');
-	
+		$('.product-grid').removeClass('product-grid').addClass('product-list');
+		
+		$('.product-thumb').addClass('clearfix');
 	});
 	
 	// change product-list to product-grid
 	$('#grid-view').click(function() {
 		$('.product-list').removeClass('product-list').addClass('product-grid');
+		
 		$('.product-thumb').removeClass('clearfix');
 	});
 	

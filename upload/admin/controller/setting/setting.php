@@ -237,7 +237,7 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_owner'] = '';
 		}
 		
-		if (isset($this->error['address'])) {
+		if (isset($this->error['address_1'])) {
 			$this->data['error_address'] = $this->error['address'];
 		} else {
 			$this->data['error_address'] = '';
@@ -442,8 +442,8 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_owner'] = $this->config->get('config_owner');
 		}
-
-		if (isset($this->request->post['config_address'])) {
+		
+		if (isset($this->request->post['config_address_1'])) {
 			$this->data['config_address'] = $this->request->post['config_address'];
 		} else {
 			$this->data['config_address'] = $this->config->get('config_address');

@@ -22,7 +22,7 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
           <legend><?php echo $text_your_details; ?></legend>
-          <div class="form-group" style="display: <?php echo (count($customer_groups) > 1 ? 'display' : 'none'); ?>;">
+          <div class="form-group required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
             <label class="col-sm-2 control-label"><?php echo $entry_customer_group; ?></label>
             <div class="col-sm-10">
               <?php foreach ($customer_groups as $customer_group) { ?>
@@ -41,7 +41,7 @@
               <?php } ?>
               <?php } ?>
             </div>
-          </div>          
+          </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-firstname"><?php echo $entry_firstname; ?></label>
             <div class="col-sm-10">
@@ -224,123 +224,172 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+<?php foreach ($custom_fields as $custom_field) { ?>
+<?php if ($custom_field['type'] != 'checkbox') { ?>
+<input type="hidden" name="custom_field[<?php echo $custom_field['custom_field_id']; ?>]" value="<?php echo $custom_field['value']; ?>" />
+<?php } else { ?>
+<?php foreach ($custom_field['value'] as $custom_field_value_id) { ?>
+<input type="hidden" name="custom_field[<?php echo $custom_field['custom_field_id']; ?>][]" value="<?php echo $custom_field_value_id; ?>" />
+<?php } ?>
+<?php } ?>
+<?php if (isset($error_custom_field[$custom_field['custom_field_id']])) { ?>
+<div class="text-danger"><?php echo $error_custom_field[$custom_field['custom_field_id']]; ?></div>
+<?php } ?>
+<?php } ?>
 <script type="text/javascript"><!--
 $('input[name=\'customer_group_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=account/register/custom_field&customer_group_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			//$('select[name=\'country_id\']').after(' <i class="icon-spinner icon-spin"></i>');
-		},
-		complete: function() {
-			//$('.icon-spinner').remove();
-		},			
+		dataType: 'json',	
 		success: function(json) {
-			$('.custom-field').remove();
+			$('.custom-field').hide();
 			
 			for (i = 0; i < json.length; i++) {
 				custom_field = json[i];
 				
-				html = '';
-				
-				if (custom_field['type'] == 'select') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10">';
-					html += '    <select name="custom_field[' + custom_field['custom_field_id'] + ']" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control">';
-					html += '      <option value=""><?php echo $text_select; ?></option>';
-				
-					for (j = 0; j < custom_field['custom_field_value'].length; j++) {
-						custom_field_value = custom_field['custom_field_value'][j];
-						
-						html += '<option value="' + custom_field_value['custom_field_value_id'] + '">' + custom_field_value['name'] + '</option>';
-					}
-						
-					html += '    </select>';
-					html += '  </div>';
-					html += '</div>';					
-				}
-				
-				if (custom_field['type'] == 'radio') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10">';
+				if (!$('input[name^=\'custom_field[' + custom_field['custom_field_id'] + ']\']').length) {
+					html = '';
 					
-					for (j = 0; j < custom_field['custom_field_value'].length; j++) {
-						custom_field_value = custom_field['custom_field_value'][j];
-						
-						html += '<div class="radio">';
-						html += '  <label><input type="radio" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field_value['custom_field_value_id'] + '" /> ' + custom_field_value['name'] + '</label>';
-						html += '</div>';
+					if (custom_field['type'] == 'select') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10">';
+						html += '    <select name="custom_field[' + custom_field['custom_field_id'] + ']" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control">';
+						html += '      <option value=""><?php echo $text_select; ?></option>';
+					
+						for (j = 0; j < custom_field['custom_field_value'].length; j++) {
+							custom_field_value = custom_field['custom_field_value'][j];
+							
+							html += '<option value="' + custom_field_value['custom_field_value_id'] + '"';
+							
+							if (custom_field_value['custom_field_value_id'] == $('input[name=\'custom_field[' + custom_field['custom_field_id'] + ']\']').val()) {
+								html += ' selected="selected"';
+							}
+			
+							html += '>' + custom_field_value['name'] + '</option>';
+						}
+							
+						html += '    </select>';
+						html += '  </div>';
+						html += '</div>';					
 					}
+					
+					if (custom_field['type'] == 'radio') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10">';
+						html += '    <div id="input-custom-field' + custom_field['custom_field_id'] + '">';
+						
+						for (j = 0; j < custom_field['custom_field_value'].length; j++) {
+							custom_field_value = custom_field['custom_field_value'][j];
+							
+							html += '<div class="radio">';
+							html += '  <label><input type="radio" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field_value['custom_field_value_id'] + '"';
+							
+							if (custom_field_value['custom_field_value_id'] == $('input[name=\'custom_field[' + custom_field['custom_field_id'] + ']\']').val()) {
+								html += ' checked="checked"';
+							}							
+							
+							html += ' /> ' + custom_field_value['name'] + '</label>';
+							html += '</div>';
+						}
+						
+						html += '    </div>';
+						html += '  </div>';
+						html += '</div>';				
+					}
+					
+					if (custom_field['type'] == 'checkbox') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10">';
+						html += '    <div id="input-custom-field' + custom_field['custom_field_id'] + '">';
+						
+						for (j = 0; j < custom_field['custom_field_value'].length; j++) {
+							custom_field_value = custom_field['custom_field_value'][j];
+							
+							html += '<div class="checkbox">';
+							html += '  <label><input type="checkbox" name="custom_field[' + custom_field['custom_field_id'] + '][]" value="' + custom_field_value['custom_field_value_id'] + '"';
+							
+							if ($('input[name^=\'custom_field[' + custom_field['custom_field_id'] + ']\']').length && $.inArray(custom_field_value['custom_field_value_id'], $('input[name^=\'custom_field[' + custom_field['custom_field_id'] + ']\']').val())) {
+								html += ' checked="checked"';
+								
+								//alert($('input[name^=\'custom_field[' + custom_field['custom_field_id'] + ']\']').val());
+							}							
 
-					html += '  </div>';
-					html += '</div>';				
-				}
-				
-				if (custom_field['type'] == 'checkbox') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10">';
-					
-					for (j = 0; j < custom_field['custom_field_value'].length; j++) {
-						custom_field_value = custom_field['custom_field_value'][j];
+							html += ' /> ' + custom_field_value['name'] + '</label>';
+							html += '</div>';
+						}
 						
-						html += '<div class="checkbox">';
-						html += '  <label><input type="checkbox" name="custom_field[' + custom_field['custom_field_id'] + '][]" value="' + custom_field_value['custom_field_value_id'] + '" /> ' + custom_field_value['name'] + '</label>';
+						html += '    </div>';					
+						html += '  </div>';
+						html += '</div>';				
+					}
+					
+					//  Set the default value
+					var element = $('input[name=\'custom_field[' + custom_field['custom_field_id'] + ']\']');
+					
+					if (element.length) {
+						value = element.val();
+					} else {
+						value = custom_field['value'];
+					}
+					
+					if (custom_field['type'] == 'text') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10"><input type="text" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + value + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
+						html += '</div>';					
+					}
+					
+					if (custom_field['type'] == 'textarea') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10"><textarea name="custom_field[' + custom_field['custom_field_id'] + ']" rows="5" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control">' + value + '</textarea></div>';
 						html += '</div>';
 					}
-										
-					html += '  </div>';
-					html += '</div>';				
+					
+					if (custom_field['type'] == 'file') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10">';
+						html += '    <button type="button" id="button-custom-field' + custom_field['custom_field_id'] + '" class="btn btn-default" onclick=""><i class="icon-upload"></i> <?php echo $button_upload; ?></button>';
+						html += '    <input type="hidden" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + value + '" id="input-custom-field' + custom_field['custom_field_id'] + '" />';
+						html += '  </div>';
+						html += '</div>';
+					}
+					
+					if (custom_field['type'] == 'date') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-3"><input type="date" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + value + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
+						html += '</div>';
+					}
+					
+					if (custom_field['type'] == 'datetime') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10"><input type="datetime-local" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + value + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
+						html += '</div>';					
+					}
+					
+					if (custom_field['type'] == 'time') {
+						html += '<div class="form-group custom-field">';
+						html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
+						html += '  <div class="col-sm-10"><input type="time" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + value + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
+						html += '</div>';					
+					}
+					
+					$('.form-group:eq(' + custom_field['sort_order'] + ')').after(html);
+				} else {
+					$('#input-custom-field' + custom_field['custom_field_id']).parent().parent().show();
 				}
 				
-				if (custom_field['type'] == 'text') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10"><input type="text" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field['value'] + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
-					html += '</div>';					
+				if (custom_field['required']) {
+					$('#input-custom-field' + custom_field['custom_field_id']).parent().parent().addClass('required');
+				} else {
+					$('#input-custom-field' + custom_field['custom_field_id']).parent().parent().removeClass('required');
 				}
-				
-				if (custom_field['type'] == 'textarea') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10"><textarea name="custom_field[' + custom_field['custom_field_id'] + ']" rows="5" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control">' + custom_field['value'] + '</textarea></div>';
-					html += '</div>';
-				}
-				
-				if (custom_field['type'] == 'file') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10">';
-					html += '    <button type="button" id="button-custom-field' + custom_field['custom_field_id'] + '" class="btn btn-default" onclick=""><i class="icon-upload"></i> <?php echo $button_upload; ?></button>';
-					html += '    <input type="hidden" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field['value'] + '" id="input-custom-field' + custom_field['custom_field_id'] + '" />';
-					html += '  </div>';
-					html += '</div>';
-				}
-				
-				if (custom_field['type'] == 'date') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10"><input type="date" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field['value'] + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
-					html += '</div>';
-				}
-				
-				if (custom_field['type'] == 'datetime') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10"><input type="datetime-local" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field['value'] + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
-					html += '</div>';					
-				}
-				
-				if (custom_field['type'] == 'time') {
-					html += '<div class="form-group custom-field' + (custom_field['required'] ? ' required' : '') + '">';
-					html += '  <label class="col-sm-2 control-label" for="input-custom-field' + custom_field['custom_field_id'] + '">' + custom_field['name'] + '</label>';
-					html += '  <div class="col-sm-10"><input type="time" name="custom_field[' + custom_field['custom_field_id'] + ']" value="' + custom_field['value'] + '" id="input-custom-field' + custom_field['custom_field_id'] + '" class="form-control" /></div>';
-					html += '</div>';					
-				}
-				
-				$('.form-group:eq(' + custom_field['sort_order'] + ')').after(html);
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {

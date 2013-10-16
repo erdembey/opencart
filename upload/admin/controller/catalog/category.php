@@ -33,6 +33,7 @@ class ControllerCatalogCategory extends Controller {
 			$this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL')); 
 		}
 
+		
 		$this->getForm();
 	}
 
