@@ -12,6 +12,12 @@ $_['text_delete']           = 'Başarılı: Dosya ya da dizin silindi!';
 $_['text_move']             = 'Başarılı: Dosya ya da dizin taşındı!';
 $_['text_copy']             = 'Başarılı: Dosya ya da dizin kopyalandı!';
 $_['text_rename']           = 'Başarılı: Dosya ya da dizin yeniden adlandırılıdı!';
+$_['text_selected']    = 'Selected Items';
+
+// Column
+$_['column_name']       = 'Name';
+$_['column_size']       = 'Size';
+$_['column_date']       = 'Date';
 
 // Entry
 $_['entry_folder']          = 'Yeni Klasör';

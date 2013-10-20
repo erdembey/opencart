@@ -42,4 +42,5 @@ $_['help_column']				= '3 Alt kategori için kullanılacak sütun sayısı. Sade
 $_['error_warning']          	= 'Uyarı: Oluşan hatalar için lütfen formu dikkatli kontrol ediniz!';
 $_['error_permission']       	= 'Uyarı: Kategorileri değiştirme iznine sahip değilsiniz!';
 $_['error_name']             	= 'Uyarı: Kategori Adı 2 ile 32 karakter arasında olmalı!';
+$_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 ?>

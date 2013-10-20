@@ -109,6 +109,10 @@ $_['tab_total']               		= 'Toplamlar';
 $_['tab_transaction']         		= 'İşlemler';
 $_['tab_voucher']             		= 'Hediye Çekleri';
 $_['tab_voucher_history']     		= 'Hediye Çeki Geçmişi';
+$_['tab_sale']                      = 'Sales';
+$_['tab_marketing']                 = 'Marketing';
+$_['tab_online']                    = 'People Online';
+$_['tab_activity']                  = 'Recent Activity';
 
 // Error
 $_['error_exception']               = 'Hata kodu(%s): %s dosya %s satır %s';

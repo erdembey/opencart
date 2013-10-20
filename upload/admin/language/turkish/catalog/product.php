@@ -102,5 +102,6 @@ $_['help_tag']          	 = 'Vilgül ile ayrınız';
 $_['error_warning']     	 = 'Uyarı: Oluşan hatalar için lütfen formu dikkatli kontrol ediniz!';
 $_['error_permission']       = 'Uyarı: Ürünleri düzenleme iznine sahip değilsiniz!';
 $_['error_name']             = 'Ürün Adı en az 3 en fazla 255 karakterden oluşmalı!';
+$_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 $_['error_model']            = 'Ürün Adı en az 3 en fazla 64 karakterden oluşmalı!';
 ?>
