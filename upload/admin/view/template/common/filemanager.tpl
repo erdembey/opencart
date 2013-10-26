@@ -1,470 +1,210 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title><?php echo $title; ?></title>
-<base href="<?php echo $base; ?>" />
-<script type="text/javascript" src="view/javascript/jquery/jquery-2.0.3.min.js"></script>
-<link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
-<script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-<style type="text/css">
-html, body {
-	font-size: 12px;
-}
-#column-left .well, #column-right .panel {
-	min-height: 300px;
-	max-height: 300px;
-	overflow-y: auto;
-}
-#column-left ul:first-child {
-	list-style: none;
-	margin: 0;
-	padding-left: 0px;
-}
-#column-left ul ul {
-	list-style: none;
-	margin: 0;
-	padding-left: 0px;
-}
-#column-left li a {
-	display: block;
-	padding: 5px;
-	text-decoration: none;
-}
-#column-left li a.active {
-	background: #428bca;
-	color: #FFFFFF;
-}
-#column-left ul ul a {
-	padding-left: 20px;
-}
-#column-left ul ul ul a {
-	padding-left: 35px;
-}
-#column-left ul ul ul ul a {
-	padding-left: 50px;
-}
-#column-left ul ul ul ul a {
-	padding-left: 65px;
-}
-#selected {
-	width: 200px;
-	max-height: 150px;
-	overflow-y: auto;
-}
-#selected > div {
-	overflow: auto;
-	padding: 5px;
-}
-</style>
-</head>
-<body>
-<header class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <button type="button" id="button-upload" data-toggle="tooltip" title="<?php echo $button_upload; ?>" class="btn btn-default navbar-btn"><i class="icon-upload"></i></button>
-    <button type="button" id="button-folder" data-toggle="tooltip" title="<?php echo $button_folder; ?>" class="btn btn-default navbar-btn"><i class="icon-folder-close"></i></button>
-    <input type="hidden" name="folder" value="" />
-  </div>
-</header>
-<div class="container">
-  <div class="row">
-    <div id="column-left" class="col-xs-3">
-      <div class="well well-sm">
-        <ul>
-          <li><a href=""><i class="icon-caret-right icon-fixed-width"></i> Catalog</a></li>
-        </ul>
-      </div>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title"><?php echo $heading_title; ?></h4>
     </div>
-    <div id="column-right" class="col-xs-9">
-      <div class="panel panel-default">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td></td>
-              <td class="text-left"><?php echo $column_name; ?></td>
-              <td class="text-left"><?php echo $column_size; ?></td>
-              <td class="text-left"><?php echo $column_date; ?></td>
-              <td class="text-left"></td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-5"><a href="<?php echo $parent; ?>" title="<?php echo $button_parent; ?>" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a>
+          <button type="button" title="<?php echo $button_upload; ?>" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
+          <button type="button" title="<?php echo $button_folder; ?>" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
+          <button type="button" title="<?php echo $button_delete; ?>" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+        </div>
+        <div class="col-sm-7">
+          <div class="input-group">
+            <input type="text" name="search" value="<?php echo $filter_name; ?>" placeholder="<?php echo $entry_search; ?>" class="form-control">
+            <span class="input-group-btn">
+            <button type="button" title="<?php echo $button_search; ?>" id="button-search" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </span></div>
+        </div>
       </div>
+      <hr />
+      <?php foreach (array_chunk($images, 4) as $image) { ?>
+      <div class="row">
+        <?php foreach ($image as $image) { ?>
+        <div class="col-sm-3">
+          <?php if ($image['type'] == 'directory') { ?>
+          <a href="<?php echo $image['href']; ?>" class="directory thumbnail text-center"><i class="fa fa-folder fa-5x"></i></a>
+          <div class="caption">
+            <p>
+              <input type="checkbox" name="delete[]" value="<?php echo $image['path']; ?>" />
+              <?php echo $image['name']; ?></p>
+          </div>
+          <?php } ?>
+          <?php if ($image['type'] == 'image') { ?>
+          <a href="<?php echo $image['path']; ?>" class="thumbnail"><img src="<?php echo $image['image']; ?>" alt="<?php echo $image['name']; ?>" title="<?php echo $image['name']; ?>" /></a>
+          <div class="caption">
+            <p>
+              <input type="checkbox" name="delete[]" value="<?php echo $image['path']; ?>" />
+              <?php echo $image['name']; ?></p>
+          </div>
+          <?php } ?>
+        </div>
+        <?php } ?>
+      </div>
+      <br />
+      <?php } ?>
     </div>
+    <div class="modal-footer"><?php echo $pagination; ?></div>
   </div>
-</div>
-<div id="upload" style="display: none;">
-  <form enctype="multipart/form-data">
-    <input type="file" name="image" id="image" />
-    <input type="hidden" name="directory" />
-  </form>
 </div>
 <script type="text/javascript"><!--
-// Set tooltip
-$('header [data-toggle=\'tooltip\']').tooltip({
-	container: 'header',
-	placement: 'bottom'
-});
-
-var selected = new Array();
-
-$('#column-left').delegate('a', 'click', function(e) {
+$('a.thumbnail').on('click', function(e) {
 	e.preventDefault();
 	
-	var node = this;
-		
-	// If current node is closed we open it.
-	if ($(e.target).hasClass('icon-caret-right')) {
+	$('#<?php echo $thumb; ?>').attr('src', $(this).find('img').attr('src'));
+	
+	$('#<?php echo $target; ?>').attr('value', $(this).attr('href'));
+	
+	alert($(this).attr('href'));
+	
+	//$('#modal-image').modal('hide');
+});
+
+$('a.directory').on('click', function(e) {
+	e.preventDefault();
+	
+	$('#modal-image').load($(this).attr('href'));
+});
+
+$('.pagination a').on('click', function(e) {
+	e.preventDefault();
+	
+	$('#modal-image').load($(this).attr('href'));
+});
+
+$('#button-parent').on('click', function(e) {
+	e.preventDefault();
+	
+	$('#modal-image').load($(this).attr('href'));
+});
+
+$('#button-search').on('click', function() {
+	$('#modal-image').load('index.php?route=common/filemanager&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>&filter_name=' + encodeURIComponent($('input[name=\'search\']').val()));
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#button-upload').on('click', function() {
+	$('#form-upload').remove();
+	
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+	
+	$('#form-upload input[name=\'file\']').on('change', function() {
 		$.ajax({
-			url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>',
-			type: 'post',
-			data: 'directory=' + encodeURIComponent($(node).attr('href')),
+			url: 'index.php?route=common/filemanager/upload&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>',
+			type: 'post',		
 			dataType: 'json',
+			data: new FormData($(this).parent()[0]),
+			cache: false,
+			contentType: false,
+			processData: false,		
 			beforeSend: function() {
-				$(e.target).addClass('icon-spinner icon-spin');
-				$(e.target).removeClass('icon-caret-right');
+				$('#button-upload i').replaceWith('<i class="fa fa-spinner fa-spin"></i>');
+				$('#button-upload').prop('disabled', true);
 			},
 			complete: function() {
-				$(e.target).addClass('icon-caret-down');
-				$(e.target).removeClass('icon-spinner icon-spin');	
+				$('#button-upload i').replaceWith('<i class="fa fa-upload"></i>');
+				$('#button-upload').prop('disabled', false);
 			},
-			success: function(json) {
-				// Just in case there is already folders being listed under the selected folder we should remove them.
-				$(node).parent().find('ul').remove();
-
-				// If directories exist
-				if (json['directory']) {
-					// Add directories to the left column
-					html = '<ul class="icons-ul">';
-					
-					for (i = 0; i < json['directory'].length; i++) {
-						if (json['directory'][i]['path']) {
-							html += '<li><a href="' + json['directory'][i]['path'] + '"><i class="icon-caret-right icon-fixed-width"></i> ' + json['directory'][i]['name'] + '</a></li>';
-						}
-					}
-				
-					html += '</ul>';
-					
-					$(node).after(html);
-				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	} else if ($(e.target).hasClass('icon-caret-down')) {
-		$(e.target).removeClass('icon-caret-down');
-		$(e.target).addClass('icon-caret-right');		
-		$(node).parent().find('ul').remove();
-	} else {		
-		// Set the current folder
-		$('input[name=\'folder\']').attr('value', $(node).attr('href'));
-		
-		// Remove all active classes
-		$('#column-left a').removeClass('active');
-		
-		// Add active class to current node
-		$('#column-left a[href=\'' + $(node).attr('href') + '\']').addClass('active');
-
-		// If current node is closed we open it.
-		$.ajax({
-			url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>',
-			type: 'post',
-			data: 'directory=' + encodeURIComponent($(node).attr('href')),
-			dataType: 'json',
-			success: function(json) {
-				if (json['directory'] || json['file']) {				
-					// Add directories to the top of the right column
-					html = '';
-					
-					for (i = 0; i < json['directory'].length; i++) {
-						if (json['directory'][i]['name'] == '..') {
-							html += '<tr>';
-							html += '  <td class="text-center"><i class="icon-level-up icon-large"></i></td>';
-							html += '  <td><a href="' + json['directory'][i]['path'] + '" class="directory">' + json['directory'][i]['name'] + '</a></td>';
-							html += '  <td></td>';
-							html += '  <td></td>';
-							html += '  <td></td>';
-							html += '</tr>';	
-						} else {
-							html += '<tr>';
-							html += '  <td class="text-center"><i class="icon-folder-close-alt icon-large"></i></td>';
-							html += '  <td><a href="' + json['directory'][i]['path'] + '" class="directory">' + json['directory'][i]['name'] + '</a></td>';
-							html += '  <td></td>';
-							html += '  <td>' + json['directory'][i]['date'] + '</td>';
-							html += '  <td><div class="btn-group">';
-							html += '    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <i class="icon-caret-down"></i></button>';
-							html += '    <ul class="dropdown-menu">';
-							html += '      <li><a href=""><i class="icon-pencil"></i> Rename</a></li>';
-							html += '      <li><a href=""><i class="icon-copy"></i> Copy</a></li>';
-							html += '      <li><a href=""><i class="icon-trash"></i> Delete</a></li>';
-							html += '    </ul>';
-							html += '  </div></td>';
-							html += '</tr>';
-						}
-					}
-					
-					$('#column-right table tbody').html(html);
-					
-					// Add files to the right column
-					if (json['file']) {
-						html = '';
-						
-						for (i = 0; i < json['file'].length; i++) {
-							html += '<tr>';
-							html += '  <td class="text-center"><i class="icon-file-alt icon-large"></i></td>';
-							html += '  <td><a href="' + json['file'][i]['path'] + '">' + json['file'][i]['name'] + '</a></td>';
-							html += '  <td>' + json['file'][i]['size'] + '</td>';
-							html += '  <td>' + json['file'][i]['date'] + '</td>';
-							html += '  <td><div class="btn-group">';
-							html += '    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <i class="icon-caret-down"></i></button>';
-							html += '    <ul class="dropdown-menu">';
-							html += '      <li><a href=""><i class="icon-pencil"></i> Rename</a></li>';
-							html += '      <li><a href=""><i class="icon-copy"></i> Copy</a></li>';
-							html += '      <li><a href=""><i class="icon-trash"></i> Delete</a></li>';
-							html += '    </ul>';
-							html += '  </div></td>';							
-							html += '</tr>';
-						}					
-						
-						$('#column-right table tbody').append(html);
-					}
-				} else {
-					html  = '<tr>';
-					html += '  <td colspan="5" class="text-center">No results!</td>';
-					html += '</tr>';
-					
-					$('#column-right table tbody').html(html);
-					
-				}
-
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}
-});
-
-$('#column-left a:first').trigger('click');
-
-$('#column-right').delegate('a.directory', 'click', function(e) {
-	e.preventDefault();
-	
-	var node = this;
-			
-	// Set the current folder
-	$('input[name=\'folder\']').attr('value', $(node).attr('href'));
-
-	// Remove all active classes
-	$('#column-left a').removeClass('active');
-	
-	// Add active class to current node
-	$('#column-left a[href=\'' + $(node).attr('href') + '\']').addClass('active');
-			
-	$.ajax({
-		url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>',
-		type: 'post',
-		data: 'directory=' + encodeURIComponent($(node).attr('href')),
-		dataType: 'json',
-		success: function(json) {
-			if (json['directory'] || json['file']) {				
-				// Add directories to the top of the right column
-				html = '';
-				
-				for (i = 0; i < json['directory'].length; i++) {
-					// If link is to previous directory
-					if (json['directory'][i]['name'] == '..') {
-						html += '<tr>';
-						html += '  <td class="text-center"><i class="icon-level-up icon-large"></i></td>';
-						html += '  <td><a href="' + json['directory'][i]['path'] + '" class="directory">' + json['directory'][i]['name'] + '</a></td>';
-						html += '  <td></td>';
-						html += '  <td></td>';
-						html += '  <td></td>';
-						html += '</tr>';	
-					} else {
-						html += '<tr>';
-						html += '  <td class="text-center"><i class="icon-folder-close-alt icon-large"></i></td>';
-						html += '  <td><a href="' + json['directory'][i]['path'] + '" class="directory">' + json['directory'][i]['name'] + '</a></td>';
-						html += '  <td></td>';
-						html += '  <td>' + json['directory'][i]['date'] + '</td>';
-						html += '  <td><div class="btn-group">';
-						html += '    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <i class="icon-caret-down"></i></button>';
-						html += '    <ul class="dropdown-menu">';
-						html += '      <li><a href=""><i class="icon-pencil"></i> Rename</a></li>';
-						html += '      <li><a href=""><i class="icon-copy"></i> Copy</a></li>';
-						html += '      <li><a href=""><i class="icon-trash"></i> Delete</a></li>';
-						html += '    </ul>';
-						html += '  </div></td>';					
-						html += '</tr>';						
-					}
-				}
-				
-				$('#column-right table tbody').html(html);
-				
-				// Add files to the right column
-				if (json['file']) {
-					html = '';
-					
-					for (i = 0; i < json['file'].length; i++) {
-						html += '<tr>';
-						html += '  <td class="text-center"><i class="icon-file-alt icon-large"></i></td>';
-						html += '  <td><a href="' + json['file'][i]['path'] + '">' + json['file'][i]['name'] + '</a></td>';
-						html += '  <td>' + json['file'][i]['size'] + '</td>';
-						html += '  <td>' + json['file'][i]['date'] + '</td>';
-						html += '  <td><div class="btn-group">';
-						html += '    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <i class="icon-caret-down"></i></button>';
-						html += '    <ul class="dropdown-menu">';
-						html += '      <li><a href=""><i class="icon-pencil"></i> Rename</a></li>';
-						html += '      <li><a href=""><i class="icon-copy"></i> Copy</a></li>';
-						html += '      <li><a href=""><i class="icon-trash"></i> Delete</a></li>';
-						html += '    </ul>';
-						html += '  </div></td>';					
-						html += '</tr>';
-					}					
-					
-					$('#column-right table tbody').append(html);
-				}
-			} else {
-				html  = '<tr>';
-				html += '  <td colspan="5" class="text-center">No results!</td>';
-				html += '</tr>';
-				
-				$('#column-right table tbody').html(html);
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
-$('#button-upload').on('click', function() {
-	
-});
-
-$('#button-folder').on('click', function() {
-	$(this).popover({
-		html: true,
-		content: function () {
-			html  = '<div class="input-group">';
-			html += '  <input type="text" name="rename" value="" class="form-control" />';
-			html += '  <span class="input-group-btn"><button type="button" id="button-rename" class="btn btn-default">Go!</button></span>';
-			html += '</div>';
-			
-			return html;			
-		},
-		placement: 'bottom'
-	});
-});
-
-$('#button-rename').on('click', function() {
-	
-});
-
-
-
-// Remove items and untick the left column if slected remove button is clicked
-$('header').delegate('#selected button', 'click', function() {
-	var index = selected.indexOf($(this).parent().find('input').attr('value'));
-	
-	// Remove from the array
-	if (index != -1) {
-		selected.splice(index, 1);
-	}
-	
-	// Remove the check if its on in the right column
-	$('#column-right input[value=\'' + $(this).parent().find('input').attr('value') + '\']').prop('checked', false);
-	
-	// Remove item
-	$(this).parent().remove();
-	
-	// If no selected items display the empty message
-	if (!selected.length) {
-		$('#selected').html('<p class="text-center"><?php echo $text_no_results; ?></p>');
-	}
-});
-
-// Move selected items	
-$('header').delegate('#button-move', 'click', function() {
-	// Remove all from copy and paste buttons
-	var node = $('#selected div:first input');
-	
-	// Loop through each slected item. If there is an error it should appear and break the loop.
-	if (node) {
-		$.ajax({
-			url: 'index.php?route=common/filemanager/move&token=<?php echo $token; ?>',
-			type: 'post',
-			data: 'from=' + encodeURIComponent(node.attr('value')) + '&to=' + encodeURIComponent($('input[name=\'folder\']').attr('value')),
-			dataType: 'json',
 			success: function(json) {
 				if (json['error']) {
 					alert(json['error']);
-				} else {
-					$(node).parent().find('button').trigger('click');
-					
-					$('#button-move').trigger('click');
 				}
-			},
+				
+				if (json['success']) {
+					alert(json['success']);
+					
+					$('#modal-image').load('index.php?route=common/filemanager&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>');
+				}
+			},			
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}	
+			}
 		});
+	});
+});
+
+$('#button-folder').popover({
+	html: true,
+	placement: 'bottom',
+	trigger: 'click',
+	title: '<?php echo $entry_folder; ?>',
+	content: function() {
+		html  = '<div class="input-group">';
+		html += '  <input type="text" name="folder" value="" placeholder="<?php echo $entry_folder; ?>" class="form-control">';
+		html += '  <span class="input-group-btn"><button type="button" title="<?php echo $button_folder; ?>" id="button-create" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></span>';
+		html += '</div>';
+		
+		return html;	
 	}
 });
 
-// Copy selected items	
-$('header').delegate('#button-copy', 'click', function() {
-	// Remove all from copy and paste buttons
-	var node = $('#selected div:first input');
-	
-	// Loop through each slected item. If there is an error it should appear and break the loop.
-	$.ajax({
-		url: 'index.php?route=common/filemanager/copy&token=<?php echo $token; ?>',
-		type: 'post',
-		data: 'from=' + encodeURIComponent(node.attr('value')) + '&to=' + encodeURIComponent($('input[name=\'folder\']').attr('value')),
-		dataType: 'json',
-		success: function(json) {
-			if (json['error']) {
-				alert(json['error']);
-			} else {    				
-				$(node).parent().find('button').trigger('click');
+$('#button-folder').on('shown.bs.popover', function() {
+	$('#button-create').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=common/filemanager/folder&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>',
+			type: 'post',		
+			dataType: 'json',
+			data: 'folder=' + encodeURIComponent($('input[name=\'folder\']').val()),
+			beforeSend: function() {
+				$('#button-create i').replaceWith('<i class="fa fa-spinner fa-spin"></i>');
+				$('#button-create').prop('disabled', true);
+			},
+			complete: function() {
+				$('#button-create i').replaceWith('<i class="fa fa-plus-circle"></i>');
+				$('#button-create').prop('disabled', false);
+			},
+			success: function(json) {
+				if (json['error']) {
+					alert(json['error']);
+				}
+				
+				if (json['success']) {
+					alert(json['success']);
 					
-				$('#button-copy').trigger('click');
+					$('#modal-image').load('index.php?route=common/filemanager&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>');
+				}
+			},			
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}	
-	});
+		});
+	});	
 });
 
-$('header').delegate('#button-delete', 'click', function() {
-	// Remove all from copy and paste buttons
-	var node = $('#selected div:first input');
-	
-	// Loop through each slected item. If there is an error it should appear and break the loop.
-	$.ajax({
-		url: 'index.php?route=common/filemanager/delete&token=<?php echo $token; ?>',
-		type: 'post',
-		data: 'path=' + encodeURIComponent(node.attr('value')),
-		dataType: 'json',
-		success: function(json) {
-			if (json['error']) {
-				alert(json['error']);
-			} else {
-				$(node).parent().find('button').trigger('click');
+$('#button-delete').on('click', function(e) {
+	if (confirm('<?php echo $text_confirm; ?>')) {
+		$.ajax({
+			url: 'index.php?route=common/filemanager/delete&token=<?php echo $token; ?>',
+			type: 'post',		
+			dataType: 'json',
+			data: $('input[name^=\'delete\']:checked'),
+			beforeSend: function() {
+				$('#button-delete i').replaceWith('<i class="fa fa-spinner fa-spin"></i>');
+				$('#button-delete').prop('disabled', true);
+			},	
+			complete: function() {
+				$('#button-delete i').replaceWith('<i class="fa fa-trash-o"></i>');
+				$('#button-delete').prop('disabled', false);
+			},		
+			success: function(json) {
+				if (json['error']) {
+					alert(json['error']);
+				}
 				
-				$('#button-delete').trigger('click');
+				if (json['success']) {
+					alert(json['success']);
+					
+					$('#modal-image').load('index.php?route=common/filemanager&token=<?php echo $token; ?>&directory=<?php echo $directory; ?>');
+				}
+			},			
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}	
-	});
+		});
+	}
 });
 //--></script>
-</body>
-</html>

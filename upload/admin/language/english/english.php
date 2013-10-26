@@ -25,7 +25,7 @@ $_['text_no_results']               = 'No results!';
 $_['text_edit']                     = 'Edit';
 $_['text_view']                     = 'View';
 $_['text_confirm']                  = 'Are you sure?';
-$_['text_home']                     = '<i class="icon-home"></i>';
+$_['text_home']                     = '<i class="fa fa-home"></i>';
 
 // Button
 $_['button_insert']                 = 'Add New';
@@ -81,6 +81,9 @@ $_['button_commission_add']         = 'Add Commission';
 $_['button_commission_remove']      = 'Remove Commission';
 $_['button_credit_add']             = 'Add Credit';
 $_['button_credit_remove']          = 'Remove Credit';
+$_['button_parent']                 = 'Parent';
+$_['button_folder']                 = 'New Folder';
+$_['button_search']                 = 'Search';
 
 // Tab
 $_['tab_address']                   = 'Address';
